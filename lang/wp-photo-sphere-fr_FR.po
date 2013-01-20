@@ -1,0 +1,43 @@
+# Copyright (C) 2013 WP Photo Sphere
+# This file is distributed under the same license as the WP Photo Sphere package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Photo Sphere 1.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-photo-sphere\n"
+"POT-Creation-Date: 2013-01-17 22:08:11+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-01-17 23:10+0100\n"
+"Last-Translator: Jérémy Heleine <jeremy.heleine@gmail.com>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: wp-photo-sphere.php:88
+msgid "Style of the container"
+msgstr "Style du conteneur"
+
+#: wp-photo-sphere.php:92
+msgid "Style of the link"
+msgstr "Style du lien"
+
+#: wp-photo-sphere.php:96
+msgid "Text of the link"
+msgstr "Texte du lien"
+
+#: wp-photo-sphere.php:101
+msgid "Use the tag %title% to insert the panorama title"
+msgstr "Utilisez le tag %title% pour insérer le titre du panorama"
+
+#: wp-photo-sphere.php:104
+msgid "Default width"
+msgstr "Largeur par défaut"
+
+#: wp-photo-sphere.php:108
+msgid "Default height"
+msgstr "Hauteur par défaut"
+
+#: wp-photo-sphere.php:113
+msgid "Hide link"
+msgstr "Masquer le lien"
