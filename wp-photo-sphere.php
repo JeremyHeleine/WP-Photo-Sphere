@@ -22,14 +22,14 @@ along with WP Photo Sphere.  If not, see <http://www.gnu.org/licenses/>.
 Plugin Name: WP Photo Sphere
 Plugin URI: http://projects.jeremyheleine.com/wp-photo-sphere
 Description: A filter that displays 360-degree panoramas taken with Photo Sphere. Read the readme file for instructions.
-Version: 1.0
+Version: 1.1
 Author: Jérémy Heleine
 Author URI: http://www.jeremyheleine.com
 License: GPL3
 */
 
 function wpps_activation() {
-	add_option('wpps_settings', array('style' => 'margin: 10px auto 10px auto;', 'style_a' => 'padding: 5px; background-color: #3D3D3D; color: #FFFFFF;', 'text' => 'WP Photo Sphere (%title%)', 'width' => 560, 'height' => 315, 'hide_link' => 0));
+	add_option('wpps_settings', array('style' => 'margin: 10px auto 10px auto;', 'style_a' => 'padding: 5px; background-color: #3D3D3D; color: #FFFFFF;', 'class_a' => '', 'text' => 'WP Photo Sphere (%title%)', 'width' => 560, 'height' => 315, 'hide_link' => 0));
 }
 
 function wpps_deactivation() {
@@ -43,21 +43,33 @@ function wpps_enqueue_scripts() {
 }
 
 function wpps_lang() {
+	// i18n
 	load_plugin_textdomain('wp-photo-sphere', false, dirname(plugin_basename(__FILE__)) . '/lang/');
 }
 
 function wpps_replace_tags($content) {
+	// Searching tags
 	$results = array();
-	$n = preg_match_all('#\[sphere ([0-9]+)(?: width="([0-9]+)" height="([0-9]+)")?\]#', $content, $results, PREG_SET_ORDER);
+	$n = preg_match_all('#\[sphere ([0-9]+)((?: [a-z0-9="]+)*)\]#', $content, $results, PREG_SET_ORDER);
+
+	// If there are tags, we convert them to HTML
 	if ($n !== false && $n > 0) {
 		$settings = get_option('wpps_settings');
 		foreach ($results as $result) {
+			// Parameters
+			$params = array();
+			foreach (explode(' ', ltrim($result[2])) as $p) {
+				$p_tmp = explode('=', $p);
+				$params[$p_tmp[0]] = (isset($p_tmp[1])) ? trim($p_tmp[1], '"') : '';
+			}
 			$image = wp_get_attachment_url($result[1]);
 			$text = str_replace('%title%', get_the_title($result[1]), $settings['text']);
-			$width = (isset($result[2])) ? intval($result[2]) : $settings['width'];
-			$height = (isset($result[3])) ? intval($result[3]) : $settings['height'];
+			$width = (array_key_exists('width', $params)) ? intval($params['width']) : $settings['width'];
+			$height = (array_key_exists('height', $params)) ? intval($params['height']) : $settings['height'];
+			$autoload = (array_key_exists('autoload', $params)) ? 'true' : 'false';
 			$style = $settings['style'] . ' width: ' . $width . 'px;';
-			$content = str_replace($result[0], '<div class="wpps_container" style="' . $style . '"><a href="' . $image . '?height=' . $height . '&amp;hide=' . $settings['hide_link'] . '&amp;load=' . plugin_dir_url(__FILE__) . 'load.gif" style="display: block; ' . $settings['style_a'] . '">' . $text . '</a><div style="position: relative;"></div></div>', $content);
+			$class_a = (!empty($settings['class_a'])) ? ' class="' . $settings['class_a'] . '"' : '';
+			$content = str_replace($result[0], '<div class="wpps_container" style="' . $style . '"><a href="' . $image . '?height=' . $height . '&amp;hide=' . $settings['hide_link'] . '&amp;load=' . plugin_dir_url(__FILE__) . 'load.gif&amp;autoload=' . $autoload . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a><div style="position: relative;"></div></div>', $content);
 		}
 	}
 
@@ -93,6 +105,10 @@ function wpps_options_page() {
 					<td><textarea id="wpps_settings_style_a" name="wpps_settings[style_a]" cols="40" rows="5"><?php echo wpps_style_for_textarea($settings['style_a']); ?></textarea></td>
 				</tr>
 				<tr valign="top">
+					<th><label for="wpps_settings_class_a"><?php _e('Class of the link', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_class_a" name="wpps_settings[class_a]" size="40" value="<?php echo $settings['class_a']; ?>" /></td>
+				</tr>
+				<tr valign="top">
 					<th><label for="wpps_settings_text"><?php _e('Text of the link', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_text" name="wpps_settings[text]" size="40" value="<?php echo $settings['text']; ?>" /></td>
 				</tr>
@@ -121,16 +137,19 @@ function wpps_options_page() {
 }
 
 function wpps_style_for_textarea($style) {
+	// One declaration per line in the options page
 	return trim(preg_replace('#;\s*#', ';' . "\n", $style));
 }
 
 function wpps_sanitize_style($style) {
+	// Removing line breaks
 	return trim(preg_replace('#;\s*#', '; ', str_replace('"', '\'', $style)));
 }
 
 function wpps_sanitize_settings($values) {
 	$values['style'] = wpps_sanitize_style($values['style']);
 	$values['style_a'] = wpps_sanitize_style($values['style_a']);
+	$values['class_a'] = trim($values['class_a']);
 	$values['width'] = intval($values['width']);
 	$values['height'] = intval($values['height']);
 	$values['hide_link'] = ($values['hide_link']) ? 1 : 0;

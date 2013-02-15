@@ -19,23 +19,41 @@ along with WP Photo Sphere.  If not, see <http://www.gnu.org/licenses/>.
 
 jQuery(function($) {
 	$(document).ready(function() {
+			// For each WP Photo Sphere link
 			$('.wpps_container a').each(function(){
 					var a = $(this);
-					var href = a.attr('href').split('?height=');
-					href[1] = href[1].split('&hide=');
-					href[1][1] = href[1][1].split('&load=');
-					a.attr('href', href[0]).click(function(){wpps_load($(this), href[0], href[1][0], parseInt(href[1][1][0]), href[1][1][1]); return false;});
+					// href[0]: image URL
+					// href[1]: parameters
+					var href = a.attr('href').split('?');
+					// params[0]: viewer height
+					// params[1]: hide link?
+					// params[2]: loading image URL
+					// params[3]: autoload?
+					var params = href[1].split('&');
+
+					// Autoload or click event
+					a.attr('href', href[0]);
+					if (params[3].split('=')[1] == 'true')
+						wpps_load(a, params[0].split('=')[1], (params[1].split('=')[1] == '1'), params[2].split('=')[1]);
+					else
+						a.click(function(){wpps_load(a, params[0].split('=')[1], (params[1].split('=')[1] == '1'), params[2].split('=')[1]); return false;});
 				});
 		});
 
-	function wpps_load(a, image, height, hide, load) {
+	// Load panorama
+	function wpps_load(a, height, hide, loading) {
+		// Future container of the panorama and image URL
 		var div = a.parent().children('div');
+		var image = a.attr('href');
+
+		// Hide link?
 		if (hide)
 			a.remove();
 		else
 			a.off('click').click(function(){return false;});
 
-		var load = $('<img />').attr('src', load).attr('alt', 'Wait...').appendTo(div);
+		// Loading image and creation of the Photosphere object (panorama)
+		var load = $('<img />').attr('src', loading).attr('alt', 'Wait...').appendTo(div);
 		load.css({'position': 'absolute', 'top': '50%', 'left': '50%', 'margin-top': -(load.height() / 2) + 'px', 'margin-left': -(load.width() / 2) + 'px'});
 		new Photosphere(image).loadPhotosphere(div.height(height)[0]);
 	}
