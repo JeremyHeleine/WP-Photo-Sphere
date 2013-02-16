@@ -17,6 +17,8 @@ By default, the dimensions are 560 x 315 pixels but you can change that in the o
 
 You can also choose different dimensions for each panorama using the attributes width and height. For example: `[sphere 42 width="200" height="400"]`.
 
+With the autoload attribute, a panorama will start automatically after the page has loaded. For example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload]`.
+
 ## License
 
 This plugin is available under the GNU GPL license.
