@@ -43,11 +43,11 @@ By default, the dimensions are 560 x 315 pixels but you can change that in the o
 You can also choose different dimensions for each panorama using the attributes width and height.
 For example: `[sphere 42 width="200" height="400"]`.
 
-= Is it possible to autostart the panorama? =
+= Is it possible to autoload the panorama? =
 
-Since the version 1.1, you can specify, for each panorama, a special attribute: `autostart`. If you use this attribute,
-the panorama will start automatically after the page has loaded. This attribute doesn't require any value, for example:
-`[sphere 42 autostart]` or `[sphere 42 width="300" height="150" autostart]`.
+Since the version 1.1, you can specify, for each panorama, a special attribute: `autoload`. If you use this attribute,
+the panorama will start automatically after the page has loaded. This attribute doesn't require any value, for
+example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload]`.
 
 == Screenshots ==
 
@@ -57,16 +57,22 @@ the panorama will start automatically after the page has loaded. This attribute 
 
 == Changelog ==
 
+= 1.1.1 =
+* Nothing new, just an error in the readme file
+
 = 1.1 =
-* Autostart attribute
+* Autoload attribute
 
 = 1.0 =
 * First official release
 
 == Upgrade Notice ==
 
+= 1.1.1 =
+* There was an error in the readme file...
+
 = 1.1 =
-* Autostart attribute
+* Autoload attribute
 
 = 1.0 =
 * First version
