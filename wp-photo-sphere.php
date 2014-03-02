@@ -1,31 +1,37 @@
 <?php
 /*
-Copyright 2013 Jérémy Heleine
-
-This file is part of WP Photo Sphere.
-
-WP Photo Sphere is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-WP Photo Sphere is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with WP Photo Sphere.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * WP Photo Sphere v2.0
+ * http://jeremyheleine.com/#wp-photo-sphere
+ *
+ * Copyright (c) 2013,2014 Jérémy Heleine
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 /*
 Plugin Name: WP Photo Sphere
-Plugin URI: http://projects.jeremyheleine.com/wp-photo-sphere
+Plugin URI: http://jeremyheleine.com/#wp-photo-sphere
 Description: A filter that displays 360-degree panoramas taken with Photo Sphere. Read the readme file for instructions.
-Version: 1.1
+Version: 2.0
 Author: Jérémy Heleine
-Author URI: http://www.jeremyheleine.com
-License: GPL3
+Author URI: http://jeremyheleine.com
+License: MIT
 */
 
 function wpps_activation() {
@@ -38,22 +44,40 @@ function wpps_deactivation() {
 
 function wpps_enqueue_scripts() {
 	wp_enqueue_script('wpps-three', plugin_dir_url(__FILE__) . 'lib/three.min.js', array(), '1.0', true);
-	wp_enqueue_script('wpps-sphere', plugin_dir_url(__FILE__) . 'lib/sphere.js', array(), '1.0', true);
-	wp_enqueue_script('wp-photo-sphere', plugin_dir_url(__FILE__) . 'wp-photo-sphere.js', array('jquery'), '1.0', true);
+	wp_enqueue_script('wpps-psv', plugin_dir_url(__FILE__) . 'lib/photo-sphere-viewer.js', array(), '1.0', true);
+	wp_enqueue_script('wp-photo-sphere', plugin_dir_url(__FILE__) . 'wp-photo-sphere.js', array('jquery'), '2.0', true);
+}
+
+function wpps_enqueue_admin_scripts() {
+	if (floatval(get_bloginfo('version')) >= 3.5)
+		wp_enqueue_script('wpps-admin', plugin_dir_url(__FILE__) . 'wpps-admin.js', array('jquery'), '1.0', true);
+}
+
+function wpps_add_pano_button() {
+	if (floatval(get_bloginfo('version')) >= 3.5) {
+		?>
+		<a href="#" id="insert-wpps-button" class="button" title="<?php _e('Add a panorama', 'wp-photo-sphere'); ?>">
+			<img src="<?php echo plugin_dir_url(__FILE__); ?>wpps-button.png" alt="" style="margin: 0 2px; padding: 0; height: 100%; width: auto; vertical-align: top;" />
+			<span><?php _e('Add a panorama', 'wp-photo-sphere'); ?></span>
+		</a>
+		<?php
+	}
 }
 
 function wpps_lang() {
 	// i18n
-	load_plugin_textdomain('wp-photo-sphere', false, dirname(plugin_basename(__FILE__)) . '/lang/');
+	load_plugin_textdomain('wp-photo-sphere', false, dirname(plugin_basename(__FILE__)) . '/lang');
 }
 
 function wpps_replace_tags($content) {
 	// Searching tags
 	$results = array();
-	$n = preg_match_all('#\[sphere ([0-9]+)((?: [a-z0-9="]+)*)\]#', $content, $results, PREG_SET_ORDER);
+	$n = preg_match_all('#\[sphere ([0-9]+)((?: [a-z0-9_="-]+)*)\]#', $content, $results, PREG_SET_ORDER);
 
 	// If there are tags, we convert them to HTML
 	if ($n !== false && $n > 0) {
+		wpps_enqueue_scripts();
+
 		$settings = get_option('wpps_settings');
 		foreach ($results as $result) {
 			// Parameters
@@ -62,14 +86,15 @@ function wpps_replace_tags($content) {
 				$p_tmp = explode('=', $p);
 				$params[$p_tmp[0]] = (isset($p_tmp[1])) ? trim($p_tmp[1], '"') : '';
 			}
-			$image = wp_get_attachment_url($result[1]);
+			$panorama = wp_get_attachment_url($result[1]);
 			$text = str_replace('%title%', get_the_title($result[1]), $settings['text']);
 			$width = (array_key_exists('width', $params)) ? intval($params['width']) : $settings['width'];
 			$height = (array_key_exists('height', $params)) ? intval($params['height']) : $settings['height'];
-			$autoload = (array_key_exists('autoload', $params)) ? 'true' : 'false';
+			$autoload = intval(array_key_exists('autoload', $params));
+			$anim_after = (array_key_exists('anim_after', $params)) ? intval($params['anim_after']) : 'default';
 			$style = $settings['style'] . ' width: ' . $width . 'px;';
 			$class_a = (!empty($settings['class_a'])) ? ' class="' . $settings['class_a'] . '"' : '';
-			$content = str_replace($result[0], '<div class="wpps_container" style="' . $style . '"><a href="' . $image . '?height=' . $height . '&amp;hide=' . $settings['hide_link'] . '&amp;load=' . plugin_dir_url(__FILE__) . 'load.gif&amp;autoload=' . $autoload . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a><div style="position: relative;"></div></div>', $content);
+			$content = str_replace($result[0], '<div class="wpps_container" style="' . $style . '"><a href="' . $panorama . '?height=' . $height . '&amp;hide=' . $settings['hide_link'] . '&amp;autoload=' . $autoload . '&amp;anim_after=' . $anim_after . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a><div style="position: relative;"></div></div>', $content);
 		}
 	}
 
@@ -158,8 +183,9 @@ function wpps_sanitize_settings($values) {
 
 register_activation_hook(__FILE__, 'wpps_activation');
 register_deactivation_hook(__FILE__, 'wpps_deactivation');
-add_action('wp_enqueue_scripts', 'wpps_enqueue_scripts');
 add_filter('the_content', 'wpps_replace_tags');
 add_action('admin_menu', 'wpps_create_menu');
+add_action('wp_enqueue_media', 'wpps_enqueue_admin_scripts');
+add_action('media_buttons', 'wpps_add_pano_button', 15);
 add_action('plugins_loaded', 'wpps_lang');
 ?>

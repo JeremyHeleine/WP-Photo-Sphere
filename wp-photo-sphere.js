@@ -1,21 +1,27 @@
 /*
-Copyright 2013 Jérémy Heleine
-
-This file is part of WP Photo Sphere.
-
-WP Photo Sphere is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-WP Photo Sphere is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with WP Photo Sphere.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ * This file is part of WP Photo Sphere v2.0
+ * http://jeremyheleine.com/#wp-photo-sphere
+ *
+ * Copyright (c) 2013,2014 Jérémy Heleine
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 jQuery(function($) {
 	$(document).ready(function() {
@@ -27,24 +33,29 @@ jQuery(function($) {
 					var href = a.attr('href').split('?');
 					// params[0]: viewer height
 					// params[1]: hide link?
-					// params[2]: loading image URL
-					// params[3]: autoload?
+					// params[2]: autoload?
+					// params[3]: anim after x milliseconds
 					var params = href[1].split('&');
 
 					// Autoload or click event
 					a.attr('href', href[0]);
-					if (params[3].split('=')[1] == 'true')
-						wpps_load(a, params[0].split('=')[1], (params[1].split('=')[1] == '1'), params[2].split('=')[1]);
+					if (wpps_attr(params[2]) == '1')
+						wpps_load(a.click(function(){return false;}), wpps_attr(params[0]), (wpps_attr(params[1]) == '1'), params[3]);
 					else
-						a.click(function(){wpps_load(a, params[0].split('=')[1], (params[1].split('=')[1] == '1'), params[2].split('=')[1]); return false;});
+						a.click(function(){wpps_load(a, wpps_attr(params[0]), (wpps_attr(params[1]) == '1'), wpps_attr(params[3])); return false;});
 				});
 		});
 
+	// Get the value of an attribute
+	function wpps_attr(param) {
+		return param.split('=')[1];
+	}
+
 	// Load panorama
-	function wpps_load(a, height, hide, loading) {
+	function wpps_load(a, height, hide, anim_after) {
 		// Future container of the panorama and image URL
 		var div = a.parent().children('div');
-		var image = a.attr('href');
+		var panorama = a.attr('href');
 
 		// Hide link?
 		if (hide)
@@ -52,9 +63,13 @@ jQuery(function($) {
 		else
 			a.off('click').click(function(){return false;});
 
-		// Loading image and creation of the Photosphere object (panorama)
-		var load = $('<img />').attr('src', loading).attr('alt', 'Wait...').appendTo(div);
-		load.css({'position': 'absolute', 'top': '50%', 'left': '50%', 'margin-top': -(load.height() / 2) + 'px', 'margin-left': -(load.width() / 2) + 'px'});
-		new Photosphere(image).loadPhotosphere(div.height(height)[0]);
+		// Creation of the PhotoSphereViewer object
+		var viewer_params = {
+				panorama: panorama,
+				container: div.height(height).css({'text-align': 'center', 'line-height': height+'px'})[0]
+			};
+		if (anim_after != 'default')
+			viewer_params.time_anim = anim_after;
+		new PhotoSphereViewer(viewer_params);
 	}
 });
