@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v2.0
+ * WP Photo Sphere v2.1
  * http://jeremyheleine.com/#wp-photo-sphere
  *
  * Copyright (c) 2013,2014 Jérémy Heleine
@@ -28,14 +28,14 @@
 Plugin Name: WP Photo Sphere
 Plugin URI: http://jeremyheleine.com/#wp-photo-sphere
 Description: A filter that displays 360-degree panoramas taken with Photo Sphere. Read the readme file for instructions.
-Version: 2.0
+Version: 2.1
 Author: Jérémy Heleine
 Author URI: http://jeremyheleine.com
 License: MIT
 */
 
 function wpps_activation() {
-	add_option('wpps_settings', array('style' => 'margin: 10px auto 10px auto;', 'style_a' => 'padding: 5px; background-color: #3D3D3D; color: #FFFFFF;', 'class_a' => '', 'text' => 'WP Photo Sphere (%title%)', 'width' => 560, 'height' => 315, 'hide_link' => 0));
+	update_option('wpps_settings', array('style' => 'margin: 10px auto;', 'style_a' => 'padding: 5px; background-color: #3D3D3D; color: #FFFFFF;', 'class_a' => '', 'text' => 'WP Photo Sphere (%title%)', 'width' => '560px', 'max_width' => '100%', 'height' => '315px', 'hide_link' => 0));
 }
 
 function wpps_deactivation() {
@@ -45,7 +45,7 @@ function wpps_deactivation() {
 function wpps_enqueue_scripts() {
 	wp_enqueue_script('wpps-three', plugin_dir_url(__FILE__) . 'lib/three.min.js', array(), '1.0', true);
 	wp_enqueue_script('wpps-psv', plugin_dir_url(__FILE__) . 'lib/photo-sphere-viewer.js', array(), '1.0', true);
-	wp_enqueue_script('wp-photo-sphere', plugin_dir_url(__FILE__) . 'wp-photo-sphere.js', array('jquery'), '2.0', true);
+	wp_enqueue_script('wp-photo-sphere', plugin_dir_url(__FILE__) . 'wp-photo-sphere.js', array('jquery'), '2.1', true);
 }
 
 function wpps_enqueue_admin_scripts() {
@@ -72,7 +72,7 @@ function wpps_lang() {
 function wpps_replace_tags($content) {
 	// Searching tags
 	$results = array();
-	$n = preg_match_all('#\[sphere ([0-9]+)((?: [a-z0-9_="-]+)*)\]#', $content, $results, PREG_SET_ORDER);
+	$n = preg_match_all('#\[sphere ([0-9]+)((?: [a-z0-9_="%pxcmin-]+)*)\]#', $content, $results, PREG_SET_ORDER);
 
 	// If there are tags, we convert them to HTML
 	if ($n !== false && $n > 0) {
@@ -88,13 +88,14 @@ function wpps_replace_tags($content) {
 			}
 			$panorama = wp_get_attachment_url($result[1]);
 			$text = str_replace('%title%', get_the_title($result[1]), $settings['text']);
-			$width = (array_key_exists('width', $params)) ? intval($params['width']) : $settings['width'];
-			$height = (array_key_exists('height', $params)) ? intval($params['height']) : $settings['height'];
+			$width = (array_key_exists('width', $params)) ? wpps_sanitize_size($params['width']) : $settings['width'];
+			$max_width = (array_key_exists('max_width', $params)) ? wpps_sanitize_size($params['max_width']) : $settings['max_width'];
+			$height = (array_key_exists('height', $params)) ? wpps_sanitize_size($params['height'], array('px')) : $settings['height'];
 			$autoload = intval(array_key_exists('autoload', $params));
 			$anim_after = (array_key_exists('anim_after', $params)) ? intval($params['anim_after']) : 'default';
-			$style = $settings['style'] . ' width: ' . $width . 'px;';
+			$style = $settings['style'] . ' width: ' . $width . '; max-width: ' . $max_width . ';';
 			$class_a = (!empty($settings['class_a'])) ? ' class="' . $settings['class_a'] . '"' : '';
-			$content = str_replace($result[0], '<div class="wpps_container" style="' . $style . '"><a href="' . $panorama . '?height=' . $height . '&amp;hide=' . $settings['hide_link'] . '&amp;autoload=' . $autoload . '&amp;anim_after=' . $anim_after . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a><div style="position: relative;"></div></div>', $content);
+			$content = str_replace($result[0], '<div class="wpps_container" style="' . $style . '"><a href="' . $panorama . '?height=' . intval($height) . '&amp;hide=' . $settings['hide_link'] . '&amp;autoload=' . $autoload . '&amp;anim_after=' . $anim_after . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a><div style="position: relative;"></div></div>', $content);
 		}
 	}
 
@@ -146,6 +147,10 @@ function wpps_options_page() {
 					<td><input type="text" id="wpps_settings_width" name="wpps_settings[width]" size="5" value="<?php echo $settings['width']; ?>" /></td>
 				</tr>
 				<tr valign="top">
+					<th><label for="wpps_settings_max_width"><?php _e('Default maximum width', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_max_width" name="wpps_settings[max_width]" size="5" value="<?php echo $settings['max_width']; ?>" /></td>
+				</tr>
+				<tr valign="top">
 					<th><label for="wpps_settings_height"><?php _e('Default height', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_height" name="wpps_settings[height]" size="5" value="<?php echo $settings['height']; ?>" /></td>
 				</tr>
@@ -171,12 +176,23 @@ function wpps_sanitize_style($style) {
 	return trim(preg_replace('#;\s*#', '; ', str_replace('"', '\'', $style)));
 }
 
+function wpps_sanitize_size($size, $allowed_units = array('px', '%', 'cm', 'in')) {
+	$value = intval($size);
+	$unit = trim(str_replace($value, '', $size));
+
+	if (!in_array($unit, $allowed_units))
+		$unit = 'px';
+
+	return $value . $unit;
+}
+
 function wpps_sanitize_settings($values) {
 	$values['style'] = wpps_sanitize_style($values['style']);
 	$values['style_a'] = wpps_sanitize_style($values['style_a']);
 	$values['class_a'] = trim($values['class_a']);
-	$values['width'] = intval($values['width']);
-	$values['height'] = intval($values['height']);
+	$values['width'] = wpps_sanitize_size($values['width']);
+	$values['max_width'] = wpps_sanitize_size($values['max_width']);
+	$values['height'] = wpps_sanitize_size($values['height'], array('px'));
 	$values['hide_link'] = ($values['hide_link']) ? 1 : 0;
 	return $values;
 }

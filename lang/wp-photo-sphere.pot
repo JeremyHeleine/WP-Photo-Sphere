@@ -1,14 +1,14 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# WP Photo Sphere 2.1.
+# Copyright (C) 2013,2014 Jeremy Heleine
+# This file is distributed under the same license as the WP Photo Sphere package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: WP Photo Sphere 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-01 10:53+0100\n"
+"POT-Creation-Date: 2014-03-23 10:00+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,38 +17,42 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: wp-photo-sphere.php:57 wp-photo-sphere.php:59
+#: wp-photo-sphere.php:59 wp-photo-sphere.php:61
 msgid "Add a panorama"
 msgstr ""
 
-#: wp-photo-sphere.php:122
+#: wp-photo-sphere.php:126
 msgid "Style of the container"
 msgstr ""
 
-#: wp-photo-sphere.php:126
+#: wp-photo-sphere.php:130
 msgid "Style of the link"
 msgstr ""
 
-#: wp-photo-sphere.php:130
+#: wp-photo-sphere.php:134
 msgid "Class of the link"
 msgstr ""
 
-#: wp-photo-sphere.php:134
+#: wp-photo-sphere.php:138
 msgid "Text of the link"
 msgstr ""
 
-#: wp-photo-sphere.php:139
+#: wp-photo-sphere.php:143
 msgid "Use the tag %title% to insert the panorama title"
 msgstr ""
 
-#: wp-photo-sphere.php:142
+#: wp-photo-sphere.php:146
 msgid "Default width"
 msgstr ""
 
-#: wp-photo-sphere.php:146
+#: wp-photo-sphere.php:150
+msgid "Default maximum width"
+msgstr ""
+
+#: wp-photo-sphere.php:154
 msgid "Default height"
 msgstr ""
 
-#: wp-photo-sphere.php:151
+#: wp-photo-sphere.php:159
 msgid "Hide link"
 msgstr ""

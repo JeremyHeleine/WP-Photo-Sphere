@@ -1,15 +1,15 @@
-# French translations for WP Photo Sphere package.
-# Copyright (C) 2014 THE WP Photo Sphere'S COPYRIGHT HOLDER
+# WP Photo Sphere 2.1.
+# Copyright (C) 2013,2014 Jeremy Heleine
 # This file is distributed under the same license as the WP Photo Sphere package.
-# Jérémy <jeremy.heleine@gmail.com>, 2014.
+# Jeremy Heleine <jeremy.heleine@gmail.com>, 2014.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Photo Sphere 2.0\n"
+"Project-Id-Version: WP Photo Sphere 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-01 09:55+0100\n"
-"PO-Revision-Date: 2014-03-01 09:59+0100\n"
-"Last-Translator: Jérémy Heleine <jeremy.heleine@gmail.com>\n"
+"POT-Creation-Date: 2014-03-23 10:00+0100\n"
+"PO-Revision-Date: 2014-03-23 10:02+0100\n"
+"Last-Translator: Jeremy Heleine <jeremy.heleine@gmail.com>\n"
 "Language-Team: French\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -17,38 +17,42 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: wp-photo-sphere.php:57 wp-photo-sphere.php:59
+#: wp-photo-sphere.php:59 wp-photo-sphere.php:61
 msgid "Add a panorama"
 msgstr "Ajouter un panorama"
 
-#: wp-photo-sphere.php:122
+#: wp-photo-sphere.php:126
 msgid "Style of the container"
 msgstr "Style du conteneur"
 
-#: wp-photo-sphere.php:126
+#: wp-photo-sphere.php:130
 msgid "Style of the link"
 msgstr "Style du lien"
 
-#: wp-photo-sphere.php:130
+#: wp-photo-sphere.php:134
 msgid "Class of the link"
 msgstr "Classe du lien"
 
-#: wp-photo-sphere.php:134
+#: wp-photo-sphere.php:138
 msgid "Text of the link"
 msgstr "Texte du lien"
 
-#: wp-photo-sphere.php:139
+#: wp-photo-sphere.php:143
 msgid "Use the tag %title% to insert the panorama title"
 msgstr "Utilisez le tag %title% pour insérer le titre du panorama"
 
-#: wp-photo-sphere.php:142
+#: wp-photo-sphere.php:146
 msgid "Default width"
 msgstr "Largeur par défaut"
 
-#: wp-photo-sphere.php:146
+#: wp-photo-sphere.php:150
+msgid "Default maximum width"
+msgstr "Largeur maximale par défaut"
+
+#: wp-photo-sphere.php:154
 msgid "Default height"
 msgstr "Hauteur par défaut"
 
-#: wp-photo-sphere.php:151
+#: wp-photo-sphere.php:159
 msgid "Hide link"
 msgstr "Masquer le lien"

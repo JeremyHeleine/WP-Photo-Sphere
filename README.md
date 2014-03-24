@@ -14,7 +14,9 @@ Use the `Add a panorama` button to upload or choose a panorama to insert into yo
 
 By default, the dimensions are 560 x 315 pixels but you can change that in the options page (in the Settings menu).
 
-You can also choose different dimensions for each panorama using the attributes width and height. For example: `[sphere 42 width="200" height="400"]`.
+You can also choose different dimensions for each panorama using the attributes width and height. For example: `[sphere 42 width="200" height="400"]` or `[sphere 42 width="50%" height="300"]`.
+
+A maximum width can also be given with the attribute max_width, for example: `[sphere 42 width="700" max_width="80%"]`. Its default value can be changed in the options page.
 
 By default, panoramas are automatically animated after 2000 milliseconds, but you can change this with the anim_after attribute. You can also deactivate the animation with the value -1. For example: `[sphere 42 anim_after="5000"]` or `[sphere 42 anim_after="-1"]`.
 

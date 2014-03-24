@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree
 Requires at least: 3.1
-Tested up to: 3.8
-Stable tag: 2.0
+Tested up to: 3.8.1
+Stable tag: 2.1
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -39,7 +39,9 @@ Use the `Add a panorama` button to upload or choose a panorama to insert into yo
 By default, the dimensions are 560 x 315 pixels but you can change that in the options page (in the Settings menu).
 
 You can also choose different dimensions for each panorama using the width and height attributes.
-For example: `[sphere 42 width="200" height="400"]`.
+For example: `[sphere 42 width="200" height="400"]` or `[sphere 42 width="50%" height="300"]`.
+
+A maximum width can also be given with the attribute max_width. Its default value can be changed in the options page.
 
 = Can I change the automatic animation? =
 
@@ -61,6 +63,10 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 
 == Changelog ==
 
+= 2.1 =
+* Maximum width can be given
+* Autoload after 1 second
+
 = 2.0 =
 * New library
 * New "Add a panorama" button
@@ -77,6 +83,10 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 * First official release
 
 == Upgrade Notice ==
+
+= 2.1 =
+* Maximum width can be given
+* Autoload after 1 second
 
 = 2.0 =
 * New library used: Photo Sphere Viewer
