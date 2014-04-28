@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v2.1
+ * WP Photo Sphere v2.2
  * http://jeremyheleine.com/#wp-photo-sphere
  *
  * Copyright (c) 2013,2014 Jérémy Heleine
@@ -28,7 +28,7 @@
 Plugin Name: WP Photo Sphere
 Plugin URI: http://jeremyheleine.com/#wp-photo-sphere
 Description: A filter that displays 360-degree panoramas taken with Photo Sphere. Read the readme file for instructions.
-Version: 2.1
+Version: 2.2
 Author: Jérémy Heleine
 Author URI: http://jeremyheleine.com
 License: MIT
@@ -69,37 +69,27 @@ function wpps_lang() {
 	load_plugin_textdomain('wp-photo-sphere', false, dirname(plugin_basename(__FILE__)) . '/lang');
 }
 
-function wpps_replace_tags($content) {
-	// Searching tags
-	$results = array();
-	$n = preg_match_all('#\[sphere ([0-9]+)((?: [a-z0-9_="%pxcmin-]+)*)\]#', $content, $results, PREG_SET_ORDER);
+function wpps_handle_shortcode($atts) {
+	wpps_enqueue_scripts();
+	$settings = get_option('wpps_settings');
 
-	// If there are tags, we convert them to HTML
-	if ($n !== false && $n > 0) {
-		wpps_enqueue_scripts();
+	$id = $atts[0];
+	$url = wp_get_attachment_url($id);
+	$text = str_replace('%title%', get_the_title($id), $settings['text']);
+	$width = (array_key_exists('width', $atts)) ? wpps_sanitize_size($atts['width']) : $settings['width'];
+	$max_width = (array_key_exists('max_width', $atts)) ? wpps_sanitize_size($atts['max_width']) : $settings['max_width'];
+	$height = (array_key_exists('height', $atts)) ? wpps_sanitize_size($atts['height'], array('px')) : $settings['height'];
+	$autoload = intval(in_array('autoload', $atts));
+	$anim_after = (array_key_exists('anim_after', $atts)) ? intval($atts['anim_after']) : 'default';
+	$style = $settings['style'] . ' width: ' . $width . '; max-width: ' . $max_width . ';';
+	$class_a = (!empty($settings['class_a'])) ? ' class="' . $settings['class_a'] . '"' : '';
 
-		$settings = get_option('wpps_settings');
-		foreach ($results as $result) {
-			// Parameters
-			$params = array();
-			foreach (explode(' ', ltrim($result[2])) as $p) {
-				$p_tmp = explode('=', $p);
-				$params[$p_tmp[0]] = (isset($p_tmp[1])) ? trim($p_tmp[1], '"') : '';
-			}
-			$panorama = wp_get_attachment_url($result[1]);
-			$text = str_replace('%title%', get_the_title($result[1]), $settings['text']);
-			$width = (array_key_exists('width', $params)) ? wpps_sanitize_size($params['width']) : $settings['width'];
-			$max_width = (array_key_exists('max_width', $params)) ? wpps_sanitize_size($params['max_width']) : $settings['max_width'];
-			$height = (array_key_exists('height', $params)) ? wpps_sanitize_size($params['height'], array('px')) : $settings['height'];
-			$autoload = intval(array_key_exists('autoload', $params));
-			$anim_after = (array_key_exists('anim_after', $params)) ? intval($params['anim_after']) : 'default';
-			$style = $settings['style'] . ' width: ' . $width . '; max-width: ' . $max_width . ';';
-			$class_a = (!empty($settings['class_a'])) ? ' class="' . $settings['class_a'] . '"' : '';
-			$content = str_replace($result[0], '<div class="wpps_container" style="' . $style . '"><a href="' . $panorama . '?height=' . intval($height) . '&amp;hide=' . $settings['hide_link'] . '&amp;autoload=' . $autoload . '&amp;anim_after=' . $anim_after . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a><div style="position: relative;"></div></div>', $content);
-		}
-	}
+	$output = '<div class="wpps_container" style="' . $style . '">';
+	$output .= '<a href="' . $url . '?height=' . intval($height) . '&amp;hide=' . $settings['hide_link'] . '&amp;autoload=' . $autoload . '&amp;anim_after=' . $anim_after . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a>';
+	$output .= '<div style="position: relative;"></div>';
+	$output .= '</div>';
 
-	return $content;
+	return $output;
 }
 
 function wpps_create_menu() {
@@ -199,7 +189,7 @@ function wpps_sanitize_settings($values) {
 
 register_activation_hook(__FILE__, 'wpps_activation');
 register_deactivation_hook(__FILE__, 'wpps_deactivation');
-add_filter('the_content', 'wpps_replace_tags');
+add_shortcode('sphere', 'wpps_handle_shortcode');
 add_action('admin_menu', 'wpps_create_menu');
 add_action('wp_enqueue_media', 'wpps_enqueue_admin_scripts');
 add_action('media_buttons', 'wpps_add_pano_button', 15);

@@ -1,5 +1,5 @@
 /*
- * This file is part of WP Photo Sphere v2.1
+ * This file is part of WP Photo Sphere v2.2
  * http://jeremyheleine.com/#wp-photo-sphere
  *
  * Copyright (c) 2013,2014 Jérémy Heleine
@@ -64,26 +64,7 @@ jQuery(function($) {
 		})();
 
 	function wpps_insert_tag(id) {
-		var area = document.getElementById('content');
 		var tag = '[sphere '+id+']';
-
-		if (document.selection) {
-			var range = document.selection.createRange();
-			range.text = tag + range.text;
-			area.focus();
-		}
-		else {
-			var content = area.value;
-			var start = area.selectionStart;
-			var end = area.selectionEnd;
-			var scrollTop = area.scrollTop;
-
-			area.value = content.substring(0, start) + tag + content.substring(start);
-
-			area.focus();
-			area.selectionStart = start + tag.length;
-			area.selectionEnd = end + tag.length;
-			area.scrollTop = scrollTop;
-		}
+		wp.media.editor.insert(tag);
 	}
 });

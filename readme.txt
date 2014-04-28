@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree
 Requires at least: 3.1
-Tested up to: 3.8.1
-Stable tag: 2.1
+Tested up to: 3.9
+Stable tag: 2.2
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -63,6 +63,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 
 == Changelog ==
 
+= 2.2 =
+* "Add a panorama" button now compatible with the visual editor
+
 = 2.1 =
 * Maximum width can be given
 * Autoload after 1 second
@@ -83,6 +86,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 * First official release
 
 == Upgrade Notice ==
+
+= 2.2 =
+* "Add a panorama" button now compatible with the visual editor
 
 = 2.1 =
 * Maximum width can be given
