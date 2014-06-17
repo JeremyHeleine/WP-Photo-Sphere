@@ -2,7 +2,9 @@
 
 WP Photo Sphere is a plugin for WordPress, a filter that allows you to display 360-degree panorama taken with Photo Sphere, the camera mode brought by Android 4.2 Jelly Bean.
 
-This plugin is based on the JavaScript library Photo Sphere Viewer : http://jeremyheleine.com/#photo-sphere-viewer
+This plugin is based on the JavaScript library [Photo Sphere Viewer](http://jeremyheleine.com/#photo-sphere-viewer).
+
+WP Photo Sphere is available in English, French and, thanks to Andrew from [WebHostingHub](http://www.webhostinghub.com), in Spanish.
 
 ## How to install it
 

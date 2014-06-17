@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree
 Requires at least: 3.1
-Tested up to: 3.9
-Stable tag: 2.2
+Tested up to: 3.9.1
+Stable tag: 2.3
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -15,13 +15,15 @@ WP Photo Sphere is a filter that allows you to display 360-degree panoramas take
 brought by Android 4.2 Jelly Bean. With WP Photo Sphere, your visitors will be able to navigate through your panoramas
 without install any plugin.
 
-WP Photo Sphere is based on the JavaScript library Photo Sphere Viewer : http://jeremyheleine.com/#photo-sphere-viewer
+WP Photo Sphere is based on the JavaScript library [Photo Sphere Viewer](http://jeremyheleine.me/#photo-sphere-viewer).
 
 If you want to contact me for any reason, feel free to email me at jeremy.heleine@gmail.com or contact me on:
 
 * Twitter: http://twitter.com/JeremyHeleine
-* Google+: https://plus.google.com/+TassedeCafeorg
-* Facebook: https://www.facebook.com/Tassedecafe.blog
+* Google+: https://plus.google.com/+JérémyHeleine
+* Facebook: https://www.facebook.com/jeremy.heleine
+
+WP Photo Sphere is available in English, French and, thanks to Andrew from [WebHostingHub](http://www.webhostinghub.com), in Spanish.
 
 == Installation ==
 
@@ -63,6 +65,10 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 
 == Changelog ==
 
+= 2.3 =
+* Panoramas are now mobile compatible
+* Spanish language available
+
 = 2.2 =
 * "Add a panorama" button now compatible with the visual editor
 
@@ -86,6 +92,10 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 * First official release
 
 == Upgrade Notice ==
+
+= 2.3 =
+* Panoramas are now mobile compatible
+* Spanish language available
 
 = 2.2 =
 * "Add a panorama" button now compatible with the visual editor
