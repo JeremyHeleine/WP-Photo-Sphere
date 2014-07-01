@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v2.3
+ * WP Photo Sphere v2.3.1
  * http://jeremyheleine.me/#wp-photo-sphere
  *
  * Copyright (c) 2013,2014 Jérémy Heleine
