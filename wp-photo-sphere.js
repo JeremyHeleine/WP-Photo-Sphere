@@ -1,5 +1,5 @@
 /*
- * This file is part of WP Photo Sphere v2.3.1
+ * This file is part of WP Photo Sphere v2.4
  * http://jeremyheleine.me/#wp-photo-sphere
  *
  * Copyright (c) 2013,2014 Jérémy Heleine
@@ -28,17 +28,20 @@ jQuery(function($) {
 			// For each WP Photo Sphere link
 			$('.wpps_container a').each(function(){
 					var a = $(this);
+
 					// href[0]: image URL
 					// href[1]: parameters
 					var href = a.attr('href').split('?');
+
 					// params[0]: viewer height
 					// params[1]: hide link?
 					// params[2]: autoload?
 					// params[3]: anim after x milliseconds
+					// params[4]: speed of the animation
 					var params = href[1].split('&');
 
 					// Autoload or click event
-					a.attr('href', href[0]).click(function(){wpps_load(a, wpps_attr(params[0]), (wpps_attr(params[1]) == '1'), wpps_attr(params[3])); return false;});
+					a.attr('href', href[0]).click(function(){wpps_load(a, wpps_attr(params[0]), (wpps_attr(params[1]) == '1'), wpps_attr(params[3]), wpps_attr(params[4])); return false;});
 					if (wpps_attr(params[2]) == '1')
 						setTimeout(function(){a.click();}, 1000);
 				});
@@ -50,7 +53,7 @@ jQuery(function($) {
 	}
 
 	// Load panorama
-	function wpps_load(a, height, hide, anim_after) {
+	function wpps_load(a, height, hide, anim_after, anim_speed) {
 		// Future container of the panorama and image URL
 		var div = a.parent().children('div');
 		var panorama = a.attr('href');
@@ -64,10 +67,15 @@ jQuery(function($) {
 		// Creation of the PhotoSphereViewer object
 		var viewer_params = {
 				panorama: panorama,
-				container: div.height(height).css({'text-align': 'center', 'line-height': height+'px'})[0]
+				container: div.height(height).css({'text-align': 'center', 'line-height': height + 'px'})[0]
 			};
+
 		if (anim_after != 'default')
 			viewer_params.time_anim = anim_after;
+
+		if (anim_speed != 'default')
+			viewer_params.anim_speed = anim_speed;
+
 		new PhotoSphereViewer(viewer_params);
 	}
 });

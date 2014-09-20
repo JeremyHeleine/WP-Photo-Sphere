@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Photo Sphere 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-23 10:00+0100\n"
+"POT-Creation-Date: 2014-09-20 11:59+0200\n"
 "PO-Revision-Date: 2014-03-23 10:02+0100\n"
 "Last-Translator: Jeremy Heleine <jeremy.heleine@gmail.com>\n"
 "Language-Team: French\n"
@@ -21,38 +21,66 @@ msgstr ""
 msgid "Add a panorama"
 msgstr "Ajouter un panorama"
 
-#: wp-photo-sphere.php:126
+#: wp-photo-sphere.php:126 wp-photo-sphere.php:159
 msgid "Style of the container"
 msgstr "Style du conteneur"
 
-#: wp-photo-sphere.php:130
+#: wp-photo-sphere.php:130 wp-photo-sphere.php:163
 msgid "Style of the link"
 msgstr "Style du lien"
 
-#: wp-photo-sphere.php:134
+#: wp-photo-sphere.php:134 wp-photo-sphere.php:167
 msgid "Class of the link"
 msgstr "Classe du lien"
 
-#: wp-photo-sphere.php:138
+#: wp-photo-sphere.php:138 wp-photo-sphere.php:171
 msgid "Text of the link"
 msgstr "Texte du lien"
 
-#: wp-photo-sphere.php:143
+#: wp-photo-sphere.php:143 wp-photo-sphere.php:176
 msgid "Use the tag %title% to insert the panorama title"
 msgstr "Utilisez le tag %title% pour insérer le titre du panorama"
 
-#: wp-photo-sphere.php:146
+#: wp-photo-sphere.php:146 wp-photo-sphere.php:179
 msgid "Default width"
 msgstr "Largeur par défaut"
 
-#: wp-photo-sphere.php:150
+#: wp-photo-sphere.php:150 wp-photo-sphere.php:183
 msgid "Default maximum width"
 msgstr "Largeur maximale par défaut"
 
-#: wp-photo-sphere.php:154
+#: wp-photo-sphere.php:154 wp-photo-sphere.php:201
 msgid "Default height"
 msgstr "Hauteur par défaut"
 
-#: wp-photo-sphere.php:159
+#: wp-photo-sphere.php:159 wp-photo-sphere.php:206
 msgid "Hide link"
 msgstr "Masquer le lien"
+
+#: wp-photo-sphere.php:187
+msgid "Default animation speed"
+msgstr "Vitesse d'animation par défaut"
+
+#: wp-photo-sphere.php:191
+msgid "Revolutions per minute"
+msgstr "Tours par minute"
+
+#: wp-photo-sphere.php:192
+msgid "Revolutions per second"
+msgstr "Tours par seconde"
+
+#: wp-photo-sphere.php:193
+msgid "Degrees per minute"
+msgstr "Degrés par minute"
+
+#: wp-photo-sphere.php:194
+msgid "Degrees per second"
+msgstr "Degrés par seconde"
+
+#: wp-photo-sphere.php:195
+msgid "Radians per minute"
+msgstr "Radians par minute"
+
+#: wp-photo-sphere.php:196
+msgid "Radians per second"
+msgstr "Radians par seconde"

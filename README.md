@@ -22,6 +22,8 @@ A maximum width can also be given with the attribute max_width, for example: `[s
 
 By default, panoramas are automatically animated after 2000 milliseconds, but you can change this with the anim_after attribute. You can also deactivate the animation with the value -1. For example: `[sphere 42 anim_after="5000"]` or `[sphere 42 anim_after="-1"]`.
 
+You can set the animation speed with the anim_speed attribute. It accepts six units: revolutions per minute/second (rpm/rps), degrees per minute/second (dpm/dps) or radians per minute/second (rad per minute/second). The default speed can be set in the options page. Example: `[sphere 42 anim_speed="10rpm"]`.
+
 With the autoload attribute, a panorama will start automatically after the page has loaded. For example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload]`.
 
 ## License

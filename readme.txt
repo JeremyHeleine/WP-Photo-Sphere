@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree
 Requires at least: 3.1
-Tested up to: 3.9.1
-Stable tag: 2.3.1
+Tested up to: 4.0
+Stable tag: 2.4
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -51,6 +51,11 @@ By default, panoramas are automatically animated after 2000 milliseconds, but yo
 anim_after attribute. You can also deactivate the animation with the value -1. For example:
 `[sphere 42 anim_after="5000"]` or `[sphere 42 anim_after="-1"]`.
 
+You can set the animation speed with the anim_speed attribute. It accepts six units: revolutions per minute/second
+(rpm/rps), degrees per minute/second (dpm/dps) or radians per minute/second (rad per minute/second). The default
+speed can be set in the options page.
+Example: `[sphere 42 anim_speed="10rpm"]`.
+
 = Is it possible to autoload the panorama? =
 
 Since the version 1.1, you can specify, for each panorama, a special attribute: `autoload`. If you use this attribute,
@@ -64,6 +69,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 3. Panorama
 
 == Changelog ==
+
+= 2.4 =
+* You can set your own animation speed
 
 = 2.3.1 =
 * Bug fixed
@@ -95,6 +103,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 * First official release
 
 == Upgrade Notice ==
+
+= 2.4 =
+* You can set your own animation speed
 
 = 2.3.1 =
 * Bug fixed
