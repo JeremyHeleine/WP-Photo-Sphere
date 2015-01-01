@@ -1,8 +1,8 @@
 /*
- * This file is part of WP Photo Sphere v2.4
+ * This file is part of WP Photo Sphere v3.0
  * http://jeremyheleine.me/#wp-photo-sphere
  *
- * Copyright (c) 2013,2014 Jérémy Heleine
+ * Copyright (c) 2013-2015 Jérémy Heleine
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -64,7 +64,7 @@ jQuery(function($) {
 		})();
 
 	function wpps_insert_tag(id) {
-		var tag = '[sphere '+id+']';
+		var tag = '[sphere ' + id + ']';
 		wp.media.editor.insert(tag);
 	}
 });
