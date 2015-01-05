@@ -1,14 +1,11 @@
-# WP Photo Sphere 2.4.
 # Copyright (C) 2013,2014 Jeremy Heleine
 # This file is distributed under the same license as the WP Photo Sphere package.
-# Jeremy Heleine <jeremy.heleine@gmail.com>, 2014.
-#
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Photo Sphere 2.4\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-20 11:59+0200\n"
-"PO-Revision-Date: 2014-09-22 15:48-0000\n"
+"Project-Id-Version: WP Photo Sphere\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-photo-sphere\n"
+"POT-Creation-Date: 2014-12-31 12:49:48+00:00\n"
+"PO-Revision-Date: 2015-01-05 12:06-0000\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -19,70 +16,78 @@ msgstr ""
 "X-Generator: Poedit 1.6.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
-#: wp-photo-sphere.php:59 wp-photo-sphere.php:61
+#: wp-photo-sphere.php:75 wp-photo-sphere.php:77
 msgid "Add a panorama"
 msgstr "Adicionar panorâmica"
 
-#: wp-photo-sphere.php:126 wp-photo-sphere.php:159
+#: wp-photo-sphere.php:198
 msgid "Style of the container"
 msgstr "Estilo do recipiente"
 
-#: wp-photo-sphere.php:130 wp-photo-sphere.php:163
+#: wp-photo-sphere.php:202
 msgid "Style of the link"
 msgstr "Estilo da ligação"
 
-#: wp-photo-sphere.php:134 wp-photo-sphere.php:167
+#: wp-photo-sphere.php:206
 msgid "Class of the link"
 msgstr "Classe da ligação"
 
-#: wp-photo-sphere.php:138 wp-photo-sphere.php:171
+#: wp-photo-sphere.php:210
 msgid "Text of the link"
 msgstr "Texto da ligação"
 
-#: wp-photo-sphere.php:143 wp-photo-sphere.php:176
+#: wp-photo-sphere.php:215
 msgid "Use the tag %title% to insert the panorama title"
 msgstr "Utilizar a etiqueta %title% para inserir o título da foto panorâmica"
 
-#: wp-photo-sphere.php:146 wp-photo-sphere.php:179
+#: wp-photo-sphere.php:218
 msgid "Default width"
 msgstr "Largura padrão"
 
-#: wp-photo-sphere.php:150 wp-photo-sphere.php:183
+#: wp-photo-sphere.php:222
 msgid "Default maximum width"
 msgstr "Largura máxima padrão"
 
-#: wp-photo-sphere.php:154 wp-photo-sphere.php:201
-msgid "Default height"
-msgstr "Altura padrão"
-
-#: wp-photo-sphere.php:159 wp-photo-sphere.php:206
-msgid "Hide link"
-msgstr "Esconder ligação"
-
-#: wp-photo-sphere.php:187
+#: wp-photo-sphere.php:226
 msgid "Default animation speed"
 msgstr "Velocidade padrão da animação"
 
-#: wp-photo-sphere.php:191
+#: wp-photo-sphere.php:230
 msgid "Revolutions per minute"
 msgstr "Revoluções por minuto"
 
-#: wp-photo-sphere.php:192
+#: wp-photo-sphere.php:231
 msgid "Revolutions per second"
 msgstr "Revoluções por segundo"
 
-#: wp-photo-sphere.php:193
+#: wp-photo-sphere.php:232
 msgid "Degrees per minute"
 msgstr "Graus por minuto"
 
-#: wp-photo-sphere.php:194
+#: wp-photo-sphere.php:233
 msgid "Degrees per second"
 msgstr "Graus por segundo"
 
-#: wp-photo-sphere.php:195
+#: wp-photo-sphere.php:234
 msgid "Radians per minute"
 msgstr "Radianos por minuto"
 
-#: wp-photo-sphere.php:196
+#: wp-photo-sphere.php:235
 msgid "Radians per second"
 msgstr "Radianos por segundo"
+
+#: wp-photo-sphere.php:240
+msgid "Default height"
+msgstr "Altura padrão"
+
+#: wp-photo-sphere.php:245
+msgid "Hide link"
+msgstr "Esconder ligação"
+
+#: wp-photo-sphere.php:250
+msgid "Display the navigation bar"
+msgstr "Mostrar a barra de navegação"
+
+#: wp-photo-sphere.php:255
+msgid "Read XMP data"
+msgstr "Ler dados XMP"
