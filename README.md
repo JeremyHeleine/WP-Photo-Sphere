@@ -7,7 +7,13 @@ WP Photo Sphere is based on the JavaScript library [Photo Sphere Viewer](http://
 
 This plugin allows you to display equirectangular panoramas, taken with a classic camera or with Photo Sphere on Android and iOS.
 
-WP Photo Sphere is available in English, French, Spanish and, thanks to [Pedro Mendonça](https://github.com/pedro-mendonca), in Portuguese.
+WP Photo Sphere is available in:
+
+* English,
+* French,
+* Spanish,
+* Portuguese (thanks to [Pedro Mendonça](https://github.com/pedro-mendonca)),
+* Turkish (thanks to [Alper Demir](https://www.cesakozmetik.com.tr/)).
 
 ## How to install it
 

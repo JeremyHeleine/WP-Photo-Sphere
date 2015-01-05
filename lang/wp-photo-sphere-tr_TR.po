@@ -1,0 +1,119 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Photo Sphere v3.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2015-01-01 13:18:31+0000\n"
+"Last-Translator: cesabt <bt@cesakozmetik.com.tr>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: CSL v1.x\n"
+"X-Poedit-Language: Turkish\n"
+"X-Poedit-Country: TURKEY\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-KeywordsList: __;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c,_nc:4c,1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Bookmarks: \n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Textdomain-Support: yes"
+
+#: wp-photo-sphere.php:75
+#: wp-photo-sphere.php:77
+#@ wp-photo-sphere
+msgid "Add a panorama"
+msgstr "Panorama ekle"
+
+#: wp-photo-sphere.php:198
+#@ wp-photo-sphere
+msgid "Style of the container"
+msgstr "Konteyner stili"
+
+#: wp-photo-sphere.php:202
+#@ wp-photo-sphere
+msgid "Style of the link"
+msgstr "Bağlantı stili"
+
+#: wp-photo-sphere.php:206
+#@ wp-photo-sphere
+msgid "Class of the link"
+msgstr "Bağlantı sınıfı"
+
+#: wp-photo-sphere.php:210
+#@ wp-photo-sphere
+msgid "Text of the link"
+msgstr "Bağlantı metni"
+
+#: wp-photo-sphere.php:215
+#, php-format
+#@ wp-photo-sphere
+msgid "Use the tag %title% to insert the panorama title"
+msgstr "Panorama başlığı eklemek için %title% etiketini kullanın"
+
+#: wp-photo-sphere.php:218
+#@ wp-photo-sphere
+msgid "Default width"
+msgstr "Varsayılan genişlik"
+
+#: wp-photo-sphere.php:222
+#@ wp-photo-sphere
+msgid "Default maximum width"
+msgstr "Varsayılan maksimum genişlik"
+
+#: wp-photo-sphere.php:226
+#@ wp-photo-sphere
+msgid "Default animation speed"
+msgstr "Varsayılan animasyon hızı"
+
+#: wp-photo-sphere.php:230
+#@ wp-photo-sphere
+msgid "Revolutions per minute"
+msgstr "Dakikada tur sayısı"
+
+#: wp-photo-sphere.php:231
+#@ wp-photo-sphere
+msgid "Revolutions per second"
+msgstr "Saniyede tur sayısı"
+
+#: wp-photo-sphere.php:232
+#@ wp-photo-sphere
+msgid "Degrees per minute"
+msgstr "Dakikada derece mktarı"
+
+#: wp-photo-sphere.php:233
+#@ wp-photo-sphere
+msgid "Degrees per second"
+msgstr "Saniyede derece miktarı"
+
+#: wp-photo-sphere.php:234
+#@ wp-photo-sphere
+msgid "Radians per minute"
+msgstr "Dakikada radyan miktarı"
+
+#: wp-photo-sphere.php:235
+#@ wp-photo-sphere
+msgid "Radians per second"
+msgstr "Saniyede radyan miktarı"
+
+#: wp-photo-sphere.php:240
+#@ wp-photo-sphere
+msgid "Default height"
+msgstr "Varsayılan yükseklik"
+
+#: wp-photo-sphere.php:245
+#@ wp-photo-sphere
+msgid "Hide link"
+msgstr "Bağlantıyı gizle"
+
+#: wp-photo-sphere.php:250
+#@ wp-photo-sphere
+msgid "Display the navigation bar"
+msgstr "Gezinti çubuğunu göster"
+
+#: wp-photo-sphere.php:255
+#@ wp-photo-sphere
+msgid "Read XMP data"
+msgstr "XMP verisini oku"
+

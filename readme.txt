@@ -3,7 +3,7 @@ Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
 Tested up to: 4.1
-Stable tag: 3.0
+Stable tag: 3.0.1
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -24,7 +24,13 @@ If you want to contact me for any reason, feel free to email me at jeremy.helein
 * Google+: https://plus.google.com/+JérémyHeleine
 * Facebook: https://www.facebook.com/jeremy.heleine
 
-WP Photo Sphere is available in English, French, Spanish and, thanks to [Pedro Mendonça](https://github.com/pedro-mendonca), in Portuguese.
+WP Photo Sphere is available in:
+
+* English,
+* French,
+* Spanish,
+* Portuguese (thanks to [Pedro Mendonça](https://github.com/pedro-mendonca)),
+* Turkish (thanks to [Alper Demir](https://www.cesakozmetik.com.tr/)).
 
 == Installation ==
 
@@ -79,6 +85,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 
 == Changelog ==
 
+= 3.0.1 =
+* Turkish translation added
+
 = 3.0 =
 * Equirectangular panoramas compatibility (not only Photo Sphere)
 * Navigation bar
@@ -118,6 +127,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 * First official release
 
 == Upgrade Notice ==
+
+= 3.0.1 =
+* Turkish translation added
 
 = 3.0 =
 * Equirectangular panoramas compatibility (not only Photo Sphere)
