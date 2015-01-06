@@ -3,7 +3,7 @@ Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
 Tested up to: 4.1
-Stable tag: 3.0.1
+Stable tag: 3.0.2
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -85,6 +85,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 
 == Changelog ==
 
+= 3.0.2 =
+* Portuguese translation updated
+
 = 3.0.1 =
 * Turkish translation added
 
@@ -127,6 +130,9 @@ example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload
 * First official release
 
 == Upgrade Notice ==
+
+= 3.0.2 =
+* Portuguese translation updated
 
 = 3.0.1 =
 * Turkish translation added
