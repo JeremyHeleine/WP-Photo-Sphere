@@ -1,5 +1,5 @@
 /*
- * This file is part of WP Photo Sphere v3.0.2
+ * This file is part of WP Photo Sphere v3.1
  * http://jeremyheleine.me/#wp-photo-sphere
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -82,7 +82,7 @@ jQuery(function($) {
 
 		var load = function() {
 			// Container
-			var container = link.parent().children('div').height(params.height).css({'text-align': 'center', 'line-height': params.height + 'px'});
+			var container = link.parent().children('div').css('text-align', 'center');
 
 			// Removes the link or simply its event
 			if (params.hide_link)
@@ -96,7 +96,10 @@ jQuery(function($) {
 					panorama: panorama,
 					container: container[0],
 					navbar: params.navbar,
-					usexmpdata: params.xmp
+					min_fov: params.min_fov,
+					max_fov: params.max_fov,
+					usexmpdata: params.xmp,
+					size: {height: params.height}
 				};
 
 			// Animation delay

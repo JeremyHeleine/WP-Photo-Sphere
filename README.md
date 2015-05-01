@@ -23,6 +23,14 @@ Like any other plugin, copy the `wp-photo-sphere` folder to the `/wp-content/plu
 
 Use the `Add a panorama` button to upload or choose a panorama to insert into your post.
 
+Since version 3.1, it is possible to read a distant panorama located on another website thanks to its URL. To do that, do not
+indicate any ID number and use the `url` attribute. Note that this feature does not work with domains that did not enable CORS.
+For example: `[sphere url="http://upload.wikimedia.org/wikipedia/commons/a/a4/Cascading_Milky_Way.jpg"]`.
+
+The default title displayed on each WP Photo Sphere link can be changed in the options page. You can also choose to display an
+unique title for a specific panorama by using the `title` attribute. Note that the `%title%` tag is also available in this
+attribute.
+
 By default, the dimensions are 560 x 315 pixels but you can change that in the options page (in the Settings menu).
 
 You can also choose different dimensions for each panorama using the attributes `width` and `height`. For example: `[sphere 42 width="200" height="400"]` or `[sphere 42 width="50%" height="300"]`.
@@ -40,6 +48,9 @@ By default, panoramas are automatically animated after 2000 milliseconds, but yo
 You can set the animation speed with the `anim_speed` attribute. It accepts six units: revolutions per minute/second (rpm/rps), degrees per minute/second (dpm/dps) or radians per minute/second (rad per minute/second). The default speed can be set in the options page. Example: `[sphere 42 anim_speed="10rpm"]`.
 
 With the `autoload` attribute, a panorama will start automatically after the page has loaded. For example: `[sphere 42 autoload]` or `[sphere 42 width="300" height="150" autoload]`.
+
+Minimal and maximal levels of zoom can be personalized in the options page by changing the minimal and maximal fields of view. You can
+also use the `min_fov` and `max_fov` attributes.
 
 ## License
 

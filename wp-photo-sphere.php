@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v3.0.2
+ * WP Photo Sphere v3.1
  * http://jeremyheleine.me/#wp-photo-sphere
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -28,9 +28,11 @@
 Plugin Name: WP Photo Sphere
 Plugin URI: http://jeremyheleine.me/#wp-photo-sphere
 Description: A filter that displays 360×180 degree panoramas. Please read the readme file for instructions.
-Version: 3.0.2
+Version: 3.1
 Author: Jérémy Heleine
 Author URI: http://jeremyheleine.me
+Text Domain: wp-photo-sphere
+Domain Path: /lang/
 License: MIT
 */
 
@@ -46,6 +48,8 @@ function wpps_activation() {
 			'hide_link' => 0,
 			'anim_speed' => '2rpm',
 			'navbar' => 0,
+			'min_fov' => 30,
+			'max_fov' => 90,
 			'xmp' => 1
 		));
 }
@@ -88,35 +92,46 @@ function wpps_lang() {
 add_action('plugins_loaded', 'wpps_lang');
 
 function wpps_shortcode_attributes($atts) {
-	$sizes = array('width', 'max_width');
-	$numbers = array('height', 'anim_after');
-	$booleans = array('navbar', 'xmp');
+	if (!empty($atts)) {
+		$sizes = array('width', 'max_width');
+		$numbers = array('height', 'anim_after');
+		$floats = array('min_fov', 'max_fov');
+		$booleans = array('navbar', 'xmp');
 
-	foreach ($atts as $att => $value) {
-		// Unnamed attribute
-		if (is_int($att)) {
-			// ID
-			if (is_numeric($value) && !isset($atts['id']))
-				$atts['id'] = $value;
+		foreach ($atts as $att => $value) {
+			// Unnamed attribute
+			if (is_int($att)) {
+				// ID
+				if (is_numeric($value) && !isset($atts['id']))
+					$atts['id'] = $value;
 
-			// Boolean
-			else
-				$atts[$value] = 1;
+				// Boolean
+				else
+					$atts[$value] = 1;
 
-			unset($atts[$att]);
+				unset($atts[$att]);
+			}
+
+			// URL
+			else if ($att == 'url' && !preg_match('#^https?://#', $value))
+				$atts['url'] = 'http://' . $value;
+
+			// Size
+			else if (in_array($att, $sizes))
+				$atts[$att] = wpps_sanitize_size($value);
+
+			// Numbers
+			else if (in_array($att, $numbers))
+				$atts[$att] = intval($value);
+
+			// Floating-point numbers
+			else if (in_array($att, $floats))
+				$atts[$att] = floatval($value);
+
+			// Manual booleans
+			else if (in_array($att, $booleans))
+				$atts[$att] = intval(($value == 'yes'));
 		}
-
-		// Size
-		else if (in_array($att, $sizes))
-			$atts[$att] = wpps_sanitize_size($value);
-
-		// Numbers
-		else if (in_array($att, $numbers))
-			$atts[$att] = intval($value);
-
-		// Manual booleans
-		else if (in_array($att, $booleans))
-			$atts[$att] = intval(($value == 'yes'));
 	}
 
 	return $atts;
@@ -130,6 +145,8 @@ function wpps_handle_shortcode($atts) {
 	$atts = wpps_shortcode_attributes($atts);
 	$atts = shortcode_atts(array(
 			'id' => 0,
+			'url' => '',
+			'title' => '',
 			'width' => $settings['width'],
 			'max_width' => $settings['max_width'],
 			'height' => intval($settings['height']),
@@ -137,14 +154,26 @@ function wpps_handle_shortcode($atts) {
 			'anim_after' => 'default',
 			'anim_speed' => $settings['anim_speed'],
 			'navbar' => $settings['navbar'],
+			'min_fov' => $settings['min_fov'],
+			'max_fov' => $settings['max_fov'],
 			'xmp' => $settings['xmp']
 		), $atts);
 
-	// Style
-	$id = $atts['id'];
-	$url = wp_get_attachment_url($id);
-	$text = str_replace('%title%', get_the_title($id), $settings['text']);
+	// URL and title
+	$title = (!empty($atts['title'])) ? $atts['title'] : $settings['text'];
 
+	if ($atts['id'] != 0) {
+		$id = $atts['id'];
+		$url = wp_get_attachment_url($id);
+		$text = str_replace('%title%', get_the_title($id), $title);
+	}
+
+	else {
+		$url = $atts['url'];
+		$text = str_replace('%title%', '', $title);
+	}
+
+	// Style
 	$style = $settings['style'] . ' width: ' . $atts['width'] . '; max-width: ' . $atts['max_width'] . ';';
 	$class_a = (!empty($settings['class_a'])) ? ' class="' . $settings['class_a'] . '"' : '';
 
@@ -158,12 +187,14 @@ function wpps_handle_shortcode($atts) {
 			'anim_after=' . $atts['anim_after'],
 			'anim_speed=' . $atts['anim_speed'],
 			'navbar=' . $atts['navbar'],
+			'min_fov=' . $atts['min_fov'],
+			'max_fov=' . $atts['max_fov'],
 			'xmp=' . $atts['xmp']
 		));
 
 	$output .= '<a href="' . $url . '?' . $params . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a>';
 
-	$output .= '<div style="position: relative;"></div>';
+	$output .= '<div style="position: relative; box-sizing: content-box;"></div>';
 	$output .= '</div>';
 
 	return $output;
@@ -252,6 +283,16 @@ function wpps_options_page() {
 				</tr>
 
 				<tr valign="top">
+					<th><label for="wpps_settings_min_fov"><?php _e('Minimal field of view (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_min_fov" name="wpps_settings[min_fov]" value="<?php echo $settings['min_fov']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_max_fov"><?php _e('Maximal field of view (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_max_fov" name="wpps_settings[max_fov]" value="<?php echo $settings['max_fov']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
 					<th><label for="wpps_settings_xmp"><?php _e('Read XMP data', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="checkbox" id="wpps_settings_xmp" name="wpps_settings[xmp]" value="1" <?php checked($settings['xmp'], 1); ?> /></td>
 				</tr>
@@ -291,6 +332,8 @@ function wpps_sanitize_settings($values) {
 	$values['height'] = wpps_sanitize_size($values['height'], array('px'));
 	$values['hide_link'] = (!!$values['hide_link']) ? 1 : 0;
 	$values['navbar'] = (!!$values['navbar']) ? 1 : 0;
+	$values['min_fov'] = floatval($values['min_fov']);
+	$values['max_fov'] = floatval($values['max_fov']);
 	$values['xmp'] = (!!$values['xmp']) ? 1 : 0;
 
 	// Animation speed
