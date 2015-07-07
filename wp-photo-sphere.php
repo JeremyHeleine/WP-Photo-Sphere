@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v3.1
+ * WP Photo Sphere v3.2
  * http://jeremyheleine.me/#wp-photo-sphere
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -28,7 +28,7 @@
 Plugin Name: WP Photo Sphere
 Plugin URI: http://jeremyheleine.me/#wp-photo-sphere
 Description: A filter that displays 360×180 degree panoramas. Please read the readme file for instructions.
-Version: 3.1
+Version: 3.2
 Author: Jérémy Heleine
 Author URI: http://jeremyheleine.me
 Text Domain: wp-photo-sphere
@@ -42,6 +42,7 @@ function wpps_activation() {
 			'style_a' => 'padding: 5px; background-color: #3D3D3D; color: #FFFFFF;',
 			'class_a' => '',
 			'text' => 'WP Photo Sphere (%title%)',
+			'autoload' => 1,
 			'width' => '560px',
 			'max_width' => '100%',
 			'height' => '315px',
@@ -50,6 +51,11 @@ function wpps_activation() {
 			'navbar' => 0,
 			'min_fov' => 30,
 			'max_fov' => 90,
+			'zoom_level' => 0,
+			'long' => 0,
+			'lat' => 0,
+			'tilt_up_max' => 90,
+			'tilt_down_max' => 90,
 			'xmp' => 1
 		));
 }
@@ -95,7 +101,7 @@ function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
 		$sizes = array('width', 'max_width');
 		$numbers = array('height', 'anim_after');
-		$floats = array('min_fov', 'max_fov');
+		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'tilt_up_max', 'tilt_down_max');
 		$booleans = array('navbar', 'xmp');
 
 		foreach ($atts as $att => $value) {
@@ -150,12 +156,17 @@ function wpps_handle_shortcode($atts) {
 			'width' => $settings['width'],
 			'max_width' => $settings['max_width'],
 			'height' => intval($settings['height']),
-			'autoload' => 0,
+			'autoload' => $settings['autoload'],
 			'anim_after' => 'default',
 			'anim_speed' => $settings['anim_speed'],
 			'navbar' => $settings['navbar'],
 			'min_fov' => $settings['min_fov'],
 			'max_fov' => $settings['max_fov'],
+			'zoom_level' => $settings['zoom_level'],
+			'long' => $settings['long'],
+			'lat' => $settings['lat'],
+			'tilt_up_max' => $settings['tilt_up_max'],
+			'tilt_down_max' => $settings['tilt_down_max'],
 			'xmp' => $settings['xmp']
 		), $atts);
 
@@ -189,6 +200,11 @@ function wpps_handle_shortcode($atts) {
 			'navbar=' . $atts['navbar'],
 			'min_fov=' . $atts['min_fov'],
 			'max_fov=' . $atts['max_fov'],
+			'zoom_level=' . $atts['zoom_level'],
+			'long=' . $atts['long'],
+			'lat=' . $atts['lat'],
+			'tilt_up_max=' . $atts['tilt_up_max'],
+			'tilt_down_max=' . $atts['tilt_down_max'],
 			'xmp=' . $atts['xmp']
 		));
 
@@ -273,6 +289,11 @@ function wpps_options_page() {
 				</tr>
 
 				<tr valign="top">
+					<th><label for="wpps_settings_autoload"><?php _e('Automatically load panoramas', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="checkbox" id="wpps_settings_autoload" name="wpps_settings[autoload]" value="1" <?php checked($settings['autoload'], 1); ?> /></td>
+				</tr>
+
+				<tr valign="top">
 					<th><label for="wpps_settings_hide_link"><?php _e('Hide link', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="checkbox" id="wpps_settings_hide_link" name="wpps_settings[hide_link]" value="1" <?php checked($settings['hide_link'], 1); ?> /></td>
 				</tr>
@@ -290,6 +311,31 @@ function wpps_options_page() {
 				<tr valign="top">
 					<th><label for="wpps_settings_max_fov"><?php _e('Maximal field of view (in degrees)', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_max_fov" name="wpps_settings[max_fov]" value="<?php echo $settings['max_fov']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_zoom_level"><?php _e('Default zoom level', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_zoom_level" name="wpps_settings[zoom_level]" value="<?php echo $settings['zoom_level']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_long"><?php _e('Default longitude (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_long" name="wpps_settings[long]" value="<?php echo $settings['long']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_lat"><?php _e('Default latitude (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_lat" name="wpps_settings[lat]" value="<?php echo $settings['lat']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_tilt_up_max"><?php _e('Maximal tilt up angle (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_tilt_up_max" name="wpps_settings[tilt_up_max]" value="<?php echo $settings['tilt_up_max']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_tilt_down_max"><?php _e('Maximal tilt down angle (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_tilt_down_max" name="wpps_settings[tilt_down_max]" value="<?php echo $settings['tilt_down_max']; ?>" /></td>
 				</tr>
 
 				<tr valign="top">
@@ -330,10 +376,16 @@ function wpps_sanitize_settings($values) {
 	$values['width'] = wpps_sanitize_size($values['width']);
 	$values['max_width'] = wpps_sanitize_size($values['max_width']);
 	$values['height'] = wpps_sanitize_size($values['height'], array('px'));
+	$values['autoload'] = (!!$values['autoload']) ? 1 : 0;
 	$values['hide_link'] = (!!$values['hide_link']) ? 1 : 0;
 	$values['navbar'] = (!!$values['navbar']) ? 1 : 0;
 	$values['min_fov'] = floatval($values['min_fov']);
 	$values['max_fov'] = floatval($values['max_fov']);
+	$values['zoom_level'] = max(0, min(intval($values['zoom_level']), 100));
+	$values['long'] = floatval($values['long']);
+	$values['lat'] = floatval($values['lat']);
+	$values['tilt_up_max'] = floatval($values['tilt_up_max']);
+	$values['tilt_down_max'] = floatval($values['tilt_down_max']);
 	$values['xmp'] = (!!$values['xmp']) ? 1 : 0;
 
 	// Animation speed

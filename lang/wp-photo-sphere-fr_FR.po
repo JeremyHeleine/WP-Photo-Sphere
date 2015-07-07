@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP Photo Sphere \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/wp-photo-sphere\n"
-"POT-Creation-Date: 2015-04-30 08:20:26+00:00\n"
+"POT-Creation-Date: 2015-07-07 11:54:21+00:00\n"
 "PO-Revision-Date: 2014-12-31 13:53+0100\n"
 "Last-Translator: Jérémy Heleine <jeremy.heleine@gmail.com>\n"
 "Language-Team: French\n"
@@ -14,91 +14,115 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: wp-photo-sphere.php:77 wp-photo-sphere.php:79
+#: wp-photo-sphere.php:85 wp-photo-sphere.php:87
 msgid "Add a panorama"
 msgstr "Ajouter un panorama"
 
-#: wp-photo-sphere.php:227
+#: wp-photo-sphere.php:245
 msgid "Style of the container"
 msgstr "Style du conteneur"
 
-#: wp-photo-sphere.php:231
+#: wp-photo-sphere.php:249
 msgid "Style of the link"
 msgstr "Style du lien"
 
-#: wp-photo-sphere.php:235
+#: wp-photo-sphere.php:253
 msgid "Class of the link"
 msgstr "Classe du lien"
 
-#: wp-photo-sphere.php:239
+#: wp-photo-sphere.php:257
 msgid "Text of the link"
 msgstr "Texte du lien"
 
-#: wp-photo-sphere.php:244
+#: wp-photo-sphere.php:262
 msgid "Use the tag %title% to insert the panorama title"
 msgstr "Utilisez le tag %title% pour insérer le titre du panorama"
 
-#: wp-photo-sphere.php:247
+#: wp-photo-sphere.php:265
 msgid "Default width"
 msgstr "Largeur par défaut"
 
-#: wp-photo-sphere.php:251
+#: wp-photo-sphere.php:269
 msgid "Default maximum width"
 msgstr "Largeur maximale par défaut"
 
-#: wp-photo-sphere.php:255
+#: wp-photo-sphere.php:273
 msgid "Default animation speed"
 msgstr "Vitesse d'animation par défaut"
 
-#: wp-photo-sphere.php:259
+#: wp-photo-sphere.php:277
 msgid "Revolutions per minute"
 msgstr "Tours par minute"
 
-#: wp-photo-sphere.php:260
+#: wp-photo-sphere.php:278
 msgid "Revolutions per second"
 msgstr "Tours par seconde"
 
-#: wp-photo-sphere.php:261
+#: wp-photo-sphere.php:279
 msgid "Degrees per minute"
 msgstr "Degrés par minute"
 
-#: wp-photo-sphere.php:262
+#: wp-photo-sphere.php:280
 msgid "Degrees per second"
 msgstr "Degrés par seconde"
 
-#: wp-photo-sphere.php:263
+#: wp-photo-sphere.php:281
 msgid "Radians per minute"
 msgstr "Radians par minute"
 
-#: wp-photo-sphere.php:264
+#: wp-photo-sphere.php:282
 msgid "Radians per second"
 msgstr "Radians par seconde"
 
-#: wp-photo-sphere.php:269
+#: wp-photo-sphere.php:287
 msgid "Default height"
 msgstr "Hauteur par défaut"
 
-#: wp-photo-sphere.php:274
+#: wp-photo-sphere.php:292
+msgid "Automatically load panoramas"
+msgstr "Charger les panoramas automatiquement"
+
+#: wp-photo-sphere.php:297
 msgid "Hide link"
 msgstr "Masquer le lien"
 
-#: wp-photo-sphere.php:279
+#: wp-photo-sphere.php:302
 msgid "Display the navigation bar"
 msgstr "Afficher la barre de navigation"
 
-#: wp-photo-sphere.php:284
+#: wp-photo-sphere.php:307
 msgid "Minimal field of view (in degrees)"
 msgstr "Angle de vision minimal (en degrés)"
 
-#: wp-photo-sphere.php:289
+#: wp-photo-sphere.php:312
 msgid "Maximal field of view (in degrees)"
 msgstr "Angle de vision maximal (en degrés)"
 
-#: wp-photo-sphere.php:294
+#: wp-photo-sphere.php:317
+msgid "Default zoom level"
+msgstr "Niveau de zoom par défaut"
+
+#: wp-photo-sphere.php:322
+msgid "Default longitude (in degrees)"
+msgstr "Longitude par défaut (en degrés)"
+
+#: wp-photo-sphere.php:327
+msgid "Default latitude (in degrees)"
+msgstr "Latitude par défaut (en degrés)"
+
+#: wp-photo-sphere.php:332
+msgid "Maximal tilt up angle (in degrees)"
+msgstr "Angle maximal d'inclinaison vers le haut (en degrés)"
+
+#: wp-photo-sphere.php:337
+msgid "Maximal tilt down angle (in degrees)"
+msgstr "Angle maximal d'inclinaison vers le bas (en degrés)"
+
+#: wp-photo-sphere.php:342
 msgid "Read XMP data"
 msgstr "Lire les données XMP"
 
-#. Description of the plugin
+#. Description of the plugin/theme
 msgid ""
 "A filter that displays 360×180 degree panoramas. Please read the readme file "
 "for instructions."
