@@ -1,5 +1,5 @@
 /*
- * This file is part of WP Photo Sphere v3.2
+ * This file is part of WP Photo Sphere v3.2.1
  * http://jeremyheleine.me/#wp-photo-sphere
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
