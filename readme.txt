@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
-Tested up to: 4.2.2
-Stable tag: 3.2.2
+Tested up to: 4.2.4
+Stable tag: 3.3
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -14,13 +14,15 @@ A filter that displays 360x180 degree panoramas.
 WP Photo Sphere is a filter that allows you to display 360x180 degree panoramas. With WP Photo Sphere, your visitors will be able
 to navigate through your panoramas without install any plugin.
 
-WP Photo Sphere is based on the JavaScript library [Photo Sphere Viewer](http://jeremyheleine.me/#photo-sphere-viewer).
+WP Photo Sphere is based on the JavaScript library [Photo Sphere Viewer](http://jeremyheleine.me/photo-sphere-viewer).
 
 This plugin allows you to display equirectangular panoramas, taken with a classic camera or with Photo Sphere on Android and iOS.
 
 If you want to contact me for any reason, feel free to email me at jeremy.heleine@gmail.com or contact me on:
 
 * Twitter: http://twitter.com/JeremyHeleine
+* GitHub: https://github.com/JeremyHeleine
+* LinkedIn: https://fr.linkedin.com/pub/j%C3%A9r%C3%A9my-heleine/55/a14/64a
 * Google+: https://plus.google.com/+JérémyHeleine
 * Facebook: https://www.facebook.com/jeremy.heleine
 
@@ -102,6 +104,10 @@ also use the `min_fov` and `max_fov` attributes.
 
 == Changelog ==
 
+= 3.3 =
+* Gyroscope support
+* Virtual reality support
+
 = 3.2.2 =
 * Fixed: multiple panoramas on a single page
 
@@ -166,6 +172,10 @@ also use the `min_fov` and `max_fov` attributes.
 * First official release
 
 == Upgrade Notice ==
+
+= 3.3 =
+* Gyroscope support
+* Virtual reality support
 
 = 3.2.2 =
 * Fixed: multiple panoramas on a single page

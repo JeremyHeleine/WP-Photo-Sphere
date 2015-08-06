@@ -1,6 +1,6 @@
 /*
- * This file is part of WP Photo Sphere v3.2.2
- * http://jeremyheleine.me/#wp-photo-sphere
+ * This file is part of WP Photo Sphere v3.3
+ * http://jeremyheleine.me
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
  *
@@ -100,11 +100,11 @@ jQuery(function($) {
 					max_fov: params.max_fov,
 					zoom_level: params.zoom_level,
 					default_position: {
-							long: params.long * Math.PI / 180.0,
-							lat: params.lat * Math.PI / 180.0
+							long: params.long  + 'deg',
+							lat: params.lat + 'deg'
 						},
-					tilt_up_max: params.tilt_up_max * Math.PI / 180.0,
-					tilt_down_max: params.tilt_down_max * Math.PI / 180.0,
+					tilt_up_max: params.tilt_up_max + 'deg',
+					tilt_down_max: params.tilt_down_max + 'deg',
 					usexmpdata: params.xmp,
 					size: {height: params.height}
 				};
