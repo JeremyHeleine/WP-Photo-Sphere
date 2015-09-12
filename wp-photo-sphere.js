@@ -58,7 +58,7 @@ jQuery(function($) {
 			var params = {};
 
 			// Booleans
-			var booleans = ['hide_link', 'autoload', 'navbar', 'xmp'];
+			var booleans = ['hide_link', 'autoload', 'navbar', 'reverse_anim', 'xmp'];
 
 			// String to array
 			var params_array = params_str.split('&');
@@ -110,6 +110,7 @@ jQuery(function($) {
 				tilt_down_max: params.tilt_down_max + 'deg',
 				min_longitude: params.min_long + 'deg',
 				max_longitude: params.max_long + 'deg',
+				reverse_anim: params.reverse_anim,
 				usexmpdata: params.xmp,
 				size: {height: params.height}
 			};

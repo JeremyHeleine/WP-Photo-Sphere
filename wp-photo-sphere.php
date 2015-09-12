@@ -66,6 +66,7 @@ function wpps_activation() {
 		'tilt_down_max' => 90,
 		'min_long' => 0,
 		'max_long' => 360,
+		'reverse_anim' => 1,
 		'xmp' => 1
 	);
 
@@ -124,7 +125,7 @@ function wpps_shortcode_attributes($atts) {
 		$sizes = array('width', 'max_width');
 		$numbers = array('height', 'anim_after');
 		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long');
-		$booleans = array('navbar', 'xmp');
+		$booleans = array('navbar', 'reverse_anim', 'xmp');
 
 		foreach ($atts as $att => $value) {
 			// Unnamed attribute
@@ -193,6 +194,7 @@ function wpps_handle_shortcode($atts) {
 		'tilt_down_max' => $settings['tilt_down_max'],
 		'min_long' => $settings['min_long'],
 		'max_long' => $settings['max_long'],
+		'reverse_anim' => $settings['reverse_anim'],
 		'xmp' => $settings['xmp']
 	), $atts);
 
@@ -235,6 +237,7 @@ function wpps_handle_shortcode($atts) {
 		'tilt_down_max=' . $atts['tilt_down_max'],
 		'min_long=' . $atts['min_long'],
 		'max_long=' . $atts['max_long'],
+		'reverse_anim=' . $atts['reverse_anim'],
 		'xmp=' . $atts['xmp']
 	));
 
@@ -410,6 +413,11 @@ function wpps_options_page() {
 				</tr>
 
 				<tr valign="top">
+					<th><label for="wpps_settings_reverse_anim"><?php _e('Reverse animation', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="checkbox" id="wpps_settings_reverse_anim" name="wpps_settings[reverse_anim]" value="1" <?php checked($settings['reverse_anim'], 1); ?> /></td>
+				</tr>
+
+				<tr valign="top">
 					<th><label for="wpps_settings_xmp"><?php _e('Read XMP data', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="checkbox" id="wpps_settings_xmp" name="wpps_settings[xmp]" value="1" <?php checked($settings['xmp'], 1); ?> /></td>
 				</tr>
@@ -467,6 +475,7 @@ function wpps_sanitize_settings($values) {
 	$values['tilt_down_max'] = floatval($values['tilt_down_max']);
 	$values['min_long'] = floatval($values['min_long']);
 	$values['max_long'] = floatval($values['max_long']);
+	$values['reverse_anim'] = (!!$values['reverse_anim']) ? 1 : 0;
 	$values['xmp'] = (!!$values['xmp']) ? 1 : 0;
 
 	// Animation speed
