@@ -123,8 +123,8 @@ add_action('plugins_loaded', 'wpps_lang');
 function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
 		$sizes = array('width', 'max_width');
-		$numbers = array('height', 'anim_after');
-		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long');
+		$numbers = array('height', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height');
+		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long', 'cropped_x', 'cropped_y');
 		$booleans = array('navbar', 'reverse_anim', 'xmp');
 
 		foreach ($atts as $att => $value) {
@@ -195,7 +195,13 @@ function wpps_handle_shortcode($atts) {
 		'min_long' => $settings['min_long'],
 		'max_long' => $settings['max_long'],
 		'reverse_anim' => $settings['reverse_anim'],
-		'xmp' => $settings['xmp']
+		'xmp' => $settings['xmp'],
+		'full_width' => 'default',
+		'full_height' => 'default',
+		'cropped_width' => 'default',
+		'cropped_height' => 'default',
+		'cropped_x' => 'default',
+		'cropped_y' => 'default',
 	), $atts);
 
 	// URL and title
@@ -238,7 +244,13 @@ function wpps_handle_shortcode($atts) {
 		'min_long=' . $atts['min_long'],
 		'max_long=' . $atts['max_long'],
 		'reverse_anim=' . $atts['reverse_anim'],
-		'xmp=' . $atts['xmp']
+		'xmp=' . $atts['xmp'],
+		'full_width=' . $atts['full_width'],
+		'full_height=' . $atts['full_height'],
+		'cropped_width=' . $atts['cropped_width'],
+		'cropped_height=' . $atts['cropped_height'],
+		'cropped_x=' . $atts['cropped_x'],
+		'cropped_y=' . $atts['cropped_y']
 	));
 
 	$output .= '<a href="' . $url . '?' . $params . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a>';
