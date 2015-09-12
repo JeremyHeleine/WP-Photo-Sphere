@@ -36,30 +36,48 @@ Domain Path: /lang/
 License: MIT
 */
 
+// Current version number
+if (!defined('WP_PHOTO_SPHERE_VERSION'))
+	define('WP_PHOTO_SPHERE_VERSION', '3.3');
+
 function wpps_activation() {
-	update_option('wpps_settings', array(
-			'style' => 'margin: 10px auto;',
-			'style_a' => 'padding: 5px; background-color: #3D3D3D; color: #FFFFFF;',
-			'class_a' => '',
-			'text' => 'WP Photo Sphere (%title%)',
-			'autoload' => 1,
-			'width' => '560px',
-			'max_width' => '100%',
-			'height' => '315px',
-			'hide_link' => 0,
-			'anim_speed' => '2rpm',
-			'navbar' => 0,
-			'min_fov' => 30,
-			'max_fov' => 90,
-			'zoom_level' => 0,
-			'long' => 0,
-			'lat' => 0,
-			'tilt_up_max' => 90,
-			'tilt_down_max' => 90,
-			'xmp' => 1
-		));
+	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
+
+	$default_settings = array(
+		'style' => 'margin: 10px auto;',
+		'style_a' => 'padding: 5px; background-color: #3D3D3D; color: #FFFFFF;',
+		'class_a' => '',
+		'text' => 'WP Photo Sphere (%title%)',
+		'autoload' => 0,
+		'width' => '560px',
+		'max_width' => '100%',
+		'height' => '315px',
+		'hide_link' => 0,
+		'anim_speed' => '2rpm',
+		'navbar' => 1,
+		'min_fov' => 30,
+		'max_fov' => 90,
+		'zoom_level' => 0,
+		'long' => 0,
+		'lat' => 0,
+		'tilt_up_max' => 90,
+		'tilt_down_max' => 90,
+		'xmp' => 1
+	);
+
+	$settings = get_option('wpps_settings');
+	if ($settings === false)
+		$settings = array();
+
+	update_option('wpps_settings', array_merge($default_settings, $settings));
 }
 register_activation_hook(__FILE__, 'wpps_activation');
+
+function wpps_check_version() {
+	if (WP_PHOTO_SPHERE_VERSION !== get_option('wpps_version'))
+		wpps_activation();
+}
+add_action('plugins_loaded', 'wpps_check_version');
 
 function wpps_deactivation() {
 	delete_option('wpps_settings');
