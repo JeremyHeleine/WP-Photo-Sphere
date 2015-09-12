@@ -93,29 +93,27 @@ jQuery(function($) {
 
 			// Basic options
 			var options = {
-					panorama: panorama,
-					container: container[0],
-					navbar: params.navbar,
-					min_fov: params.min_fov,
-					max_fov: params.max_fov,
-					zoom_level: params.zoom_level,
-					default_position: {
-							long: params.long  + 'deg',
-							lat: params.lat + 'deg'
-						},
-					tilt_up_max: params.tilt_up_max + 'deg',
-					tilt_down_max: params.tilt_down_max + 'deg',
-					usexmpdata: params.xmp,
-					size: {height: params.height}
-				};
+				panorama: panorama,
+				container: container[0],
+				navbar: params.navbar,
+				min_fov: params.min_fov,
+				max_fov: params.max_fov,
+				zoom_level: params.zoom_level,
+				anim_speed: params.anim_speed,
+				vertical_anim_speed: params.vertical_anim_speed,
+				default_position: {
+					long: params.long  + 'deg',
+					lat: params.lat + 'deg'
+				},
+				tilt_up_max: params.tilt_up_max + 'deg',
+				tilt_down_max: params.tilt_down_max + 'deg',
+				usexmpdata: params.xmp,
+				size: {height: params.height}
+			};
 
 			// Animation delay
 			if (params.anim_after != 'default')
 				options.time_anim = (params.anim_after == '-1') ? false : parseInt(params.anim_after);
-
-			// Animation speed
-			if (params.anim_speed != 'default')
-				options.anim_speed = params.anim_speed;
 
 			// Object
 			new PhotoSphereViewer(options);
