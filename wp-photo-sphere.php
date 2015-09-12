@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.3.0.1');
+	define('WP_PHOTO_SPHERE_VERSION', '3.3');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -55,6 +55,7 @@ function wpps_activation() {
 		'hide_link' => 0,
 		'anim_speed' => '2rpm',
 		'vertical_anim_speed' => '2rpm',
+		'vertical_anim_target' => 0,
 		'navbar' => 1,
 		'min_fov' => 30,
 		'max_fov' => 90,
@@ -120,7 +121,7 @@ function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
 		$sizes = array('width', 'max_width');
 		$numbers = array('height', 'anim_after');
-		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'tilt_up_max', 'tilt_down_max');
+		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max');
 		$booleans = array('navbar', 'xmp');
 
 		foreach ($atts as $att => $value) {
@@ -179,6 +180,7 @@ function wpps_handle_shortcode($atts) {
 		'anim_after' => 'default',
 		'anim_speed' => $settings['anim_speed'],
 		'vertical_anim_speed' => $settings['vertical_anim_speed'],
+		'vertical_anim_target' => $settings['vertical_anim_target'],
 		'navbar' => $settings['navbar'],
 		'min_fov' => $settings['min_fov'],
 		'max_fov' => $settings['max_fov'],
@@ -218,6 +220,7 @@ function wpps_handle_shortcode($atts) {
 		'anim_after=' . $atts['anim_after'],
 		'anim_speed=' . $atts['anim_speed'],
 		'vertical_anim_speed=' . $atts['vertical_anim_speed'],
+		'vertical_anim_target=' . $atts['vertical_anim_target'],
 		'navbar=' . $atts['navbar'],
 		'min_fov=' . $atts['min_fov'],
 		'max_fov=' . $atts['max_fov'],
@@ -376,6 +379,11 @@ function wpps_options_page() {
 				</tr>
 
 				<tr valign="top">
+					<th><label for="wpps_settings_vertical_anim_target"><?php _e('Default vertical animation target (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_vertical_anim_target" name="wpps_settings[vertical_anim_target]" value="<?php echo $settings['vertical_anim_target']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
 					<th><label for="wpps_settings_tilt_up_max"><?php _e('Maximal tilt up angle (in degrees)', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_tilt_up_max" name="wpps_settings[tilt_up_max]" value="<?php echo $settings['tilt_up_max']; ?>" /></td>
 				</tr>
@@ -438,6 +446,7 @@ function wpps_sanitize_settings($values) {
 	$values['zoom_level'] = max(0, min(intval($values['zoom_level']), 100));
 	$values['long'] = floatval($values['long']);
 	$values['lat'] = floatval($values['lat']);
+	$values['vertical_anim_target'] = floatval($values['vertical_anim_target']);
 	$values['tilt_up_max'] = floatval($values['tilt_up_max']);
 	$values['tilt_down_max'] = floatval($values['tilt_down_max']);
 	$values['xmp'] = (!!$values['xmp']) ? 1 : 0;

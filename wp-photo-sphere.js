@@ -101,6 +101,7 @@ jQuery(function($) {
 				zoom_level: params.zoom_level,
 				anim_speed: params.anim_speed,
 				vertical_anim_speed: params.vertical_anim_speed,
+				vertical_anim_target: params.vertical_anim_target,
 				default_position: {
 					long: params.long  + 'deg',
 					lat: params.lat + 'deg'
