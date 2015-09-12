@@ -108,6 +108,8 @@ jQuery(function($) {
 				},
 				tilt_up_max: params.tilt_up_max + 'deg',
 				tilt_down_max: params.tilt_down_max + 'deg',
+				min_longitude: params.min_long + 'deg',
+				max_longitude: params.max_long + 'deg',
 				usexmpdata: params.xmp,
 				size: {height: params.height}
 			};

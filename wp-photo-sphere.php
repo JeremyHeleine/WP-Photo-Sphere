@@ -64,6 +64,8 @@ function wpps_activation() {
 		'lat' => 0,
 		'tilt_up_max' => 90,
 		'tilt_down_max' => 90,
+		'min_long' => 0,
+		'max_long' => 360,
 		'xmp' => 1
 	);
 
@@ -121,7 +123,7 @@ function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
 		$sizes = array('width', 'max_width');
 		$numbers = array('height', 'anim_after');
-		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max');
+		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long');
 		$booleans = array('navbar', 'xmp');
 
 		foreach ($atts as $att => $value) {
@@ -189,6 +191,8 @@ function wpps_handle_shortcode($atts) {
 		'lat' => $settings['lat'],
 		'tilt_up_max' => $settings['tilt_up_max'],
 		'tilt_down_max' => $settings['tilt_down_max'],
+		'min_long' => $settings['min_long'],
+		'max_long' => $settings['max_long'],
 		'xmp' => $settings['xmp']
 	), $atts);
 
@@ -229,6 +233,8 @@ function wpps_handle_shortcode($atts) {
 		'lat=' . $atts['lat'],
 		'tilt_up_max=' . $atts['tilt_up_max'],
 		'tilt_down_max=' . $atts['tilt_down_max'],
+		'min_long=' . $atts['min_long'],
+		'max_long=' . $atts['max_long'],
 		'xmp=' . $atts['xmp']
 	));
 
@@ -394,6 +400,16 @@ function wpps_options_page() {
 				</tr>
 
 				<tr valign="top">
+					<th><label for="wpps_settings_min_long"><?php _e('Minimal longitude (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_min_long" name="wpps_settings[min_long]" value="<?php echo $settings['min_long']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_max_long"><?php _e('Maximal longitude (in degrees)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_max_long" name="wpps_settings[max_long]" value="<?php echo $settings['max_long']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
 					<th><label for="wpps_settings_xmp"><?php _e('Read XMP data', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="checkbox" id="wpps_settings_xmp" name="wpps_settings[xmp]" value="1" <?php checked($settings['xmp'], 1); ?> /></td>
 				</tr>
@@ -449,6 +465,8 @@ function wpps_sanitize_settings($values) {
 	$values['vertical_anim_target'] = floatval($values['vertical_anim_target']);
 	$values['tilt_up_max'] = floatval($values['tilt_up_max']);
 	$values['tilt_down_max'] = floatval($values['tilt_down_max']);
+	$values['min_long'] = floatval($values['min_long']);
+	$values['max_long'] = floatval($values['max_long']);
 	$values['xmp'] = (!!$values['xmp']) ? 1 : 0;
 
 	// Animation speed
