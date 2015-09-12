@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v3.3
+ * WP Photo Sphere v3.4
  * http://jeremyheleine.me
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -28,7 +28,7 @@
 Plugin Name: WP Photo Sphere
 Plugin URI: http://jeremyheleine.me
 Description: A filter that displays 360×180 degree panoramas. Please read the readme file for instructions.
-Version: 3.3
+Version: 3.4
 Author: Jérémy Heleine
 Author URI: http://jeremyheleine.me
 Text Domain: wp-photo-sphere
@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.3');
+	define('WP_PHOTO_SPHERE_VERSION', '3.4');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -91,8 +91,8 @@ register_deactivation_hook(__FILE__, 'wpps_deactivation');
 
 function wpps_register_scripts() {
 	wp_register_script('wpps-three', plugin_dir_url(__FILE__) . 'lib/three.min.js', array(), '3.3', true);
-	wp_register_script('wpps-psv', plugin_dir_url(__FILE__) . 'lib/photo-sphere-viewer.min.js', array('wpps-three'), '3.4.1', true);
-	wp_register_script('wp-photo-sphere', plugin_dir_url(__FILE__) . 'wp-photo-sphere.js', array('jquery', 'wpps-psv'), '3.3', true);
+	wp_register_script('wpps-psv', plugin_dir_url(__FILE__) . 'lib/photo-sphere-viewer.min.js', array('wpps-three'), '2.4.1', true);
+	wp_register_script('wp-photo-sphere', plugin_dir_url(__FILE__) . 'wp-photo-sphere.js', array('jquery', 'wpps-psv'), '3.4', true);
 }
 add_action('plugins_loaded', 'wpps_register_scripts');
 

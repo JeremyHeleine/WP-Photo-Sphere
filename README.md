@@ -3,7 +3,7 @@
 WP Photo Sphere is a filter that allows you to display 360×180 degree panoramas. With WP Photo Sphere, your visitors will be able
 to navigate through your panoramas without install any plugin.
 
-WP Photo Sphere is based on the JavaScript library [Photo Sphere Viewer](http://jeremyheleine.me/#photo-sphere-viewer).
+WP Photo Sphere is based on the JavaScript library [Photo Sphere Viewer](https://github.com/JeremyHeleine/Photo-Sphere-Viewer).
 
 This plugin allows you to display equirectangular panoramas, taken with a classic camera or with Photo Sphere on Android and iOS.
 

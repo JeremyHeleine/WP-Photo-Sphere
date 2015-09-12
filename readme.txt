@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
-Tested up to: 4.2.4
-Stable tag: 3.3
+Tested up to: 4.3
+Stable tag: 3.4
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -104,6 +104,12 @@ also use the `min_fov` and `max_fov` attributes.
 
 == Changelog ==
 
+= 3.4 =
+* New: Vertical animation control
+* New: Longitude restriction possible
+* New: Cropped panoramas
+* Fixed: Fullscreen on Internet Explorer
+
 = 3.3 =
 * Gyroscope support
 * Virtual reality support
@@ -172,6 +178,12 @@ also use the `min_fov` and `max_fov` attributes.
 * First official release
 
 == Upgrade Notice ==
+
+= 3.4 =
+* New: Vertical animation control
+* New: Longitude restriction possible
+* New: Cropped panoramas
+* Fixed: Fullscreen on Internet Explorer
 
 = 3.3 =
 * Gyroscope support
