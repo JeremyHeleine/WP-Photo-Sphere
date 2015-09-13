@@ -122,15 +122,19 @@ jQuery(function($) {
 			// Cropped panorama
 			var pano_size = {};
 			var size_attrs = ['full_width', 'full_height', 'cropped_width', 'cropped_height', 'cropped_x', 'cropped_y'];
+			var not_default_attrs = 0;
 
 			for (var i = 0; i < 6; ++i) {
 				var attr = size_attrs[i];
 
-				if (params[attr] != 'default')
+				if (params[attr] != 'default') {
 					pano_size[attr] = params[attr];
+					++not_default_attrs;
+				}
 			}
 
-			options.pano_size = pano_size;
+			if (!!not_default_attrs)
+				options.pano_size = pano_size;
 
 			// Object
 			new PhotoSphereViewer(options);
