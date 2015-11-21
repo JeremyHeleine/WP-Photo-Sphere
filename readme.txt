@@ -3,7 +3,7 @@ Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
 Tested up to: 4.3
-Stable tag: 3.4.2
+Stable tag: 3.4.3
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -32,7 +32,8 @@ WP Photo Sphere is available in:
 * French,
 * Spanish,
 * Portuguese (thanks to [Pedro Mendonça](https://github.com/pedro-mendonca)),
-* Turkish (thanks to [Alper Demir](https://www.cesakozmetik.com.tr/)).
+* Turkish (thanks to [Alper Demir](https://www.cesakozmetik.com.tr/)),
+* Dutch (thanks to [Gideon van Melle](https://github.com/gvmelle)).
 
 == Installation ==
 
