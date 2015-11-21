@@ -13,7 +13,8 @@ WP Photo Sphere is available in:
 * French,
 * Spanish,
 * Portuguese (thanks to [Pedro Mendonça](https://github.com/pedro-mendonca)),
-* Turkish (thanks to [Alper Demir](https://www.cesakozmetik.com.tr/)).
+* Turkish (thanks to [Alper Demir](https://www.cesakozmetik.com.tr/)),
+* Dutch (thanks to [Gideon van Melle](https://github.com/gvmelle)).
 
 ## How to install it
 
