@@ -1,0 +1,152 @@
+# Copyright (C) 2015 WP Photo Sphere
+# This file is distributed under the same license as the WP Photo Sphere package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP Photo Sphere\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/WP-Photo-Sphere\n"
+"POT-Creation-Date: 2015-11-18 16:41+0100\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-11-18 16:56+0100\n"
+"Language-Team: \n"
+"X-Generator: Poedit 1.8.5\n"
+"Last-Translator: gvmelle <translations@gvmelle.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: wp-photo-sphere.php:108 wp-photo-sphere.php:110
+msgid "Add a panorama"
+msgstr "Voeg een panorama toe"
+
+#: wp-photo-sphere.php:293
+msgid "Style of the container"
+msgstr "Stijl van de container"
+
+#: wp-photo-sphere.php:298
+msgid "Style of the link"
+msgstr "Stijl van de link"
+
+#: wp-photo-sphere.php:303
+msgid "Class of the link"
+msgstr "Class van de link"
+
+#: wp-photo-sphere.php:308
+msgid "Text of the link"
+msgstr "Tekst van de link"
+
+#: wp-photo-sphere.php:314
+msgid "Use the tag %title% to insert the panorama title"
+msgstr "Gebruik de tag % title % voor het invoegen van de panorama titel"
+
+#: wp-photo-sphere.php:318
+msgid "Default width"
+msgstr "Standaardbreedte"
+
+#: wp-photo-sphere.php:323
+msgid "Default maximum width"
+msgstr "Standaard maximale breedte"
+
+#: wp-photo-sphere.php:328
+msgid "Default animation speed"
+msgstr "Standaar bewegingssnelheid"
+
+#: wp-photo-sphere.php:332 wp-photo-sphere.php:347
+msgid "Revolutions per minute"
+msgstr "Omwentelingen per minuut"
+
+#: wp-photo-sphere.php:333 wp-photo-sphere.php:348
+msgid "Revolutions per second"
+msgstr "Omwentelingen per seconde"
+
+#: wp-photo-sphere.php:334 wp-photo-sphere.php:349
+msgid "Degrees per minute"
+msgstr "Graden per minuut"
+
+#: wp-photo-sphere.php:335 wp-photo-sphere.php:350
+msgid "Degrees per second"
+msgstr "Graden per seconde"
+
+#: wp-photo-sphere.php:336 wp-photo-sphere.php:351
+msgid "Radians per minute"
+msgstr "Radialen per minuut"
+
+#: wp-photo-sphere.php:337 wp-photo-sphere.php:352
+msgid "Radians per second"
+msgstr "Radialen per seconde"
+
+#: wp-photo-sphere.php:343
+msgid "Default vertical animation speed"
+msgstr "Standaard verticale bewegingssnelheid"
+
+#: wp-photo-sphere.php:358
+msgid "Default height"
+msgstr "Standaard hoogte"
+
+#: wp-photo-sphere.php:363
+msgid "Automatically load panoramas"
+msgstr "Laad panorama's automatisch"
+
+#: wp-photo-sphere.php:368
+msgid "Hide link"
+msgstr "Verberg link"
+
+#: wp-photo-sphere.php:373
+msgid "Display the navigation bar"
+msgstr "Toon de navigatiebalk"
+
+#: wp-photo-sphere.php:378
+msgid "Minimal field of view (in degrees)"
+msgstr "Minimale gezichtsveld (in graden)"
+
+#: wp-photo-sphere.php:383
+msgid "Maximal field of view (in degrees)"
+msgstr "Maximale gezichtsveld (in graden)"
+
+#: wp-photo-sphere.php:388
+msgid "Default zoom level"
+msgstr "Standaard zoom niveau"
+
+#: wp-photo-sphere.php:393
+msgid "Default longitude (in degrees)"
+msgstr "Standaard lengtegraad (in graden)"
+
+#: wp-photo-sphere.php:398
+msgid "Default latitude (in degrees)"
+msgstr "De standaard breedtegraad (in graden)"
+
+#: wp-photo-sphere.php:403
+msgid "Default vertical animation target (in degrees)"
+msgstr "Standaard verticale bewegingsdoel (in graden)"
+
+#: wp-photo-sphere.php:408
+msgid "Maximal tilt up angle (in degrees)"
+msgstr "Maximale tilthoek omhoog (in graden)"
+
+#: wp-photo-sphere.php:413
+msgid "Maximal tilt down angle (in degrees)"
+msgstr "Maximale tilthoek omlaag (in graden)"
+
+#: wp-photo-sphere.php:418
+msgid "Minimal longitude (in degrees)"
+msgstr "Minimale lengtegraad (in graden)"
+
+#: wp-photo-sphere.php:423
+msgid "Maximal longitude (in degrees)"
+msgstr "Maximale lengtegraad (in graden)"
+
+#: wp-photo-sphere.php:428
+msgid "Reverse animation"
+msgstr "Omgekeerde bewegingsrichting"
+
+#: wp-photo-sphere.php:433
+msgid "Read XMP data"
+msgstr "Lees XMP gegevens"
+
+#. Description of the plugin/theme
+msgid ""
+"A filter that displays 360×180 degree panoramas. Please read the readme file "
+"for instructions."
+msgstr ""
+"Een filter dat 360 x 180 graden panorama's weergeeft. Lees s.v.p. het readme "
+"bestand voor instructies."
