@@ -1,5 +1,5 @@
 /*
- * This file is part of WP Photo Sphere v3.4.2
+ * This file is part of WP Photo Sphere v3.4.3
  * http://jeremyheleine.me
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -41,7 +41,7 @@ jQuery(function($) {
 
 			return function() {
 					// Is the frame already created?
-					if (media_frame == null) {
+					if (media_frame === null) {
 						var insert_pano = $('#insert-wpps-button span').text();
 						var insert = insert_pano.substring(0, insert_pano.indexOf(' '));
 
