@@ -112,6 +112,7 @@ jQuery(function($) {
 				max_longitude: params.max_long + 'deg',
 				reverse_anim: params.reverse_anim,
 				usexmpdata: params.xmp,
+				eyes_offset: params.eyes_offset,
 				size: {height: params.height}
 			};
 
