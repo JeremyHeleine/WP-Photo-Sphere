@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v3.5
+ * WP Photo Sphere v3.5.1
  * http://jeremyheleine.me
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -28,7 +28,7 @@
 Plugin Name: WP Photo Sphere
 Plugin URI: http://jeremyheleine.me
 Description: A filter that displays 360×180 degree panoramas. Please read the readme file for instructions.
-Version: 3.5
+Version: 3.5.1
 Author: Jérémy Heleine
 Author URI: http://jeremyheleine.me
 Text Domain: wp-photo-sphere
@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.5');
+	define('WP_PHOTO_SPHERE_VERSION', '3.5.1');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
