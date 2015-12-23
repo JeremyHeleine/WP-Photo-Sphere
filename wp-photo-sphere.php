@@ -3,7 +3,7 @@
  * WP Photo Sphere v3.5.1
  * http://jeremyheleine.me
  *
- * Copyright (c) 2013-2015 Jéréfmy Heleine
+ * Copyright (c) 2013-2015 Jérémy Heleine
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
