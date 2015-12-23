@@ -1,9 +1,9 @@
-=== WP Photo Sphere ===
+﻿=== WP Photo Sphere ===
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
 Tested up to: 4.3
-Stable tag: 3.5.1
+Stable tag: 3.5.2
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -104,6 +104,9 @@ also use the `min_fov` and `max_fov` attributes.
 3. Panorama
 
 == Changelog ==
+
+= 3.5.2 =
+* Use WordPress 4.4+ "large" images on mobile devices
 
 = 3.5.1 =
 * Portuguese translation updated
