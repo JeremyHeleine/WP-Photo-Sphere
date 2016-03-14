@@ -1,146 +1,174 @@
-# Copyright (C) 2015 WP Photo Sphere
+# Copyright (C) 2016 WP Photo Sphere
 # This file is distributed under the same license as the WP Photo Sphere package.
 msgid ""
 msgstr ""
 "Project-Id-Version: WP Photo Sphere \n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/WP-Photo-Sphere\n"
-"POT-Creation-Date: 2015-11-24 18:27:55+00:00\n"
+"POT-Creation-Date: 2016-03-12 19:27:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: wp-photo-sphere.php:109 wp-photo-sphere.php:111
+#: wp-photo-sphere.php:112 wp-photo-sphere.php:114
 msgid "Add a panorama"
 msgstr ""
 
-#: wp-photo-sphere.php:296
+#: wp-photo-sphere.php:307
 msgid "Style of the container"
 msgstr ""
 
-#: wp-photo-sphere.php:301
+#: wp-photo-sphere.php:312
 msgid "Style of the link"
 msgstr ""
 
-#: wp-photo-sphere.php:306
+#: wp-photo-sphere.php:317
 msgid "Class of the link"
 msgstr ""
 
-#: wp-photo-sphere.php:311
+#: wp-photo-sphere.php:322
 msgid "Text of the link"
 msgstr ""
 
-#: wp-photo-sphere.php:317
+#: wp-photo-sphere.php:328
 msgid "Use the tag %title% to insert the panorama title"
 msgstr ""
 
-#: wp-photo-sphere.php:321
+#: wp-photo-sphere.php:332
 msgid "Default width"
 msgstr ""
 
-#: wp-photo-sphere.php:326
+#: wp-photo-sphere.php:337
 msgid "Default maximum width"
 msgstr ""
 
-#: wp-photo-sphere.php:331
+#: wp-photo-sphere.php:342
 msgid "Default animation speed"
 msgstr ""
 
-#: wp-photo-sphere.php:335 wp-photo-sphere.php:350
+#: wp-photo-sphere.php:346 wp-photo-sphere.php:361
 msgid "Revolutions per minute"
 msgstr ""
 
-#: wp-photo-sphere.php:336 wp-photo-sphere.php:351
+#: wp-photo-sphere.php:347 wp-photo-sphere.php:362
 msgid "Revolutions per second"
 msgstr ""
 
-#: wp-photo-sphere.php:337 wp-photo-sphere.php:352
+#: wp-photo-sphere.php:348 wp-photo-sphere.php:363
 msgid "Degrees per minute"
 msgstr ""
 
-#: wp-photo-sphere.php:338 wp-photo-sphere.php:353
+#: wp-photo-sphere.php:349 wp-photo-sphere.php:364
 msgid "Degrees per second"
 msgstr ""
 
-#: wp-photo-sphere.php:339 wp-photo-sphere.php:354
+#: wp-photo-sphere.php:350 wp-photo-sphere.php:365
 msgid "Radians per minute"
 msgstr ""
 
-#: wp-photo-sphere.php:340 wp-photo-sphere.php:355
+#: wp-photo-sphere.php:351 wp-photo-sphere.php:366
 msgid "Radians per second"
 msgstr ""
 
-#: wp-photo-sphere.php:346
+#: wp-photo-sphere.php:357
 msgid "Default vertical animation speed"
 msgstr ""
 
-#: wp-photo-sphere.php:361
+#: wp-photo-sphere.php:372
 msgid "Default height"
 msgstr ""
 
-#: wp-photo-sphere.php:366
+#: wp-photo-sphere.php:377
 msgid "Automatically load panoramas"
 msgstr ""
 
-#: wp-photo-sphere.php:371
+#: wp-photo-sphere.php:382
 msgid "Hide link"
 msgstr ""
 
-#: wp-photo-sphere.php:376
+#: wp-photo-sphere.php:387
 msgid "Display the navigation bar"
 msgstr ""
 
-#: wp-photo-sphere.php:381
-msgid "Minimal field of view (in degrees)"
+#: wp-photo-sphere.php:392
+msgid "Overlay image"
 msgstr ""
 
-#: wp-photo-sphere.php:386
-msgid "Maximal field of view (in degrees)"
-msgstr ""
-
-#: wp-photo-sphere.php:391
-msgid "Default zoom level"
-msgstr ""
-
-#: wp-photo-sphere.php:396
-msgid "Default longitude (in degrees)"
+#: wp-photo-sphere.php:397
+msgid "Overlay image position"
 msgstr ""
 
 #: wp-photo-sphere.php:401
+msgid "Top left corner"
+msgstr ""
+
+#: wp-photo-sphere.php:405
+msgid "Bottom left corner"
+msgstr ""
+
+#: wp-photo-sphere.php:409
+msgid "Bottom right corner"
+msgstr ""
+
+#: wp-photo-sphere.php:413
+msgid "Top right corner"
+msgstr ""
+
+#: wp-photo-sphere.php:419
+msgid "Minimal field of view (in degrees)"
+msgstr ""
+
+#: wp-photo-sphere.php:424
+msgid "Maximal field of view (in degrees)"
+msgstr ""
+
+#: wp-photo-sphere.php:429
+msgid "Default zoom level"
+msgstr ""
+
+#: wp-photo-sphere.php:434
+msgid "Default longitude (in degrees)"
+msgstr ""
+
+#: wp-photo-sphere.php:439
 msgid "Default latitude (in degrees)"
 msgstr ""
 
-#: wp-photo-sphere.php:406
+#: wp-photo-sphere.php:444
 msgid "Default vertical animation target (in degrees)"
 msgstr ""
 
-#: wp-photo-sphere.php:411
+#: wp-photo-sphere.php:449
 msgid "Maximal tilt up angle (in degrees)"
 msgstr ""
 
-#: wp-photo-sphere.php:416
+#: wp-photo-sphere.php:454
 msgid "Maximal tilt down angle (in degrees)"
 msgstr ""
 
-#: wp-photo-sphere.php:421
+#: wp-photo-sphere.php:459
 msgid "Minimal longitude (in degrees)"
 msgstr ""
 
-#: wp-photo-sphere.php:426
+#: wp-photo-sphere.php:464
 msgid "Maximal longitude (in degrees)"
 msgstr ""
 
-#: wp-photo-sphere.php:431
+#: wp-photo-sphere.php:469
 msgid "Reverse animation"
 msgstr ""
 
-#: wp-photo-sphere.php:436
+#: wp-photo-sphere.php:474
 msgid "Read XMP data"
 msgstr ""
 
-#: wp-photo-sphere.php:441
+#: wp-photo-sphere.php:479
+msgid "Smooth user moves"
+msgstr ""
+
+#: wp-photo-sphere.php:484
 msgid "Eyes offset in VR mode"
 msgstr ""
 
