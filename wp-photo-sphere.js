@@ -58,7 +58,7 @@ jQuery(function($) {
 			var params = {};
 
 			// Booleans
-			var booleans = ['hide_link', 'autoload', 'navbar', 'reverse_anim', 'xmp'];
+			var booleans = ['hide_link', 'autoload', 'navbar', 'reverse_anim', 'xmp', 'smooth_user_moves'];
 
 			// String to array
 			var params_array = params_str.split('&');
@@ -95,6 +95,7 @@ jQuery(function($) {
 			var options = {
 				panorama: panorama,
 				container: container[0],
+				smooth_user_moves: params.smooth_user_moves,
 				navbar: params.navbar,
 				min_fov: params.min_fov,
 				max_fov: params.max_fov,

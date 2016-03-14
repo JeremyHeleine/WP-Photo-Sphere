@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.6.0.0');
+	define('WP_PHOTO_SPHERE_VERSION', '3.6.0.1');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -68,6 +68,7 @@ function wpps_activation() {
 		'max_long' => 360,
 		'reverse_anim' => 1,
 		'xmp' => 1,
+		'smooth_user_moves' => 1,
 		'eyes_offset' => 5
 	);
 
@@ -126,7 +127,7 @@ function wpps_shortcode_attributes($atts) {
 		$sizes = array('width', 'max_width');
 		$numbers = array('height', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height');
 		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long', 'eyes_offset', 'cropped_x', 'cropped_y', 'horizontal_fov', 'vertical_fov');
-		$booleans = array('navbar', 'reverse_anim', 'xmp');
+		$booleans = array('navbar', 'reverse_anim', 'xmp', 'smooth_user_moves');
 
 		foreach ($atts as $att => $value) {
 			// Unnamed attribute
@@ -197,6 +198,7 @@ function wpps_handle_shortcode($atts) {
 		'max_long' => $settings['max_long'],
 		'reverse_anim' => $settings['reverse_anim'],
 		'xmp' => $settings['xmp'],
+		'smooth_user_moves' => $settings['smooth_user_moves'],
 		'eyes_offset' => $settings['eyes_offset'],
 		'full_width' => 'default',
 		'full_height' => 'default',
@@ -249,6 +251,7 @@ function wpps_handle_shortcode($atts) {
 		'max_long=' . $atts['max_long'],
 		'reverse_anim=' . $atts['reverse_anim'],
 		'xmp=' . $atts['xmp'],
+		'smooth_user_moves=' . $atts['smooth_user_moves'],
 		'eyes_offset=' . $atts['eyes_offset'],
 		'full_width=' . $atts['full_width'],
 		'full_height=' . $atts['full_height'],
@@ -442,6 +445,11 @@ function wpps_options_page() {
 				</tr>
 
 				<tr valign="top">
+					<th><label for="wpps_settings_smooth_user_moves"><?php _e('Smooth user moves', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="checkbox" id="wpps_settings_smooth_user_moves" name="wpps_settings[smooth_user_moves]" value="1" <?php checked($settings['smooth_user_moves'], 1); ?> /></td>
+				</tr>
+
+				<tr valign="top">
 					<th><label for="wpps_settings_eyes_offset"><?php _e('Eyes offset in VR mode', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_eyes_offset" name="wpps_settings[eyes_offset]" size="5" value="<?php echo $settings['eyes_offset']; ?>" /></td>
 				</tr>
@@ -501,6 +509,7 @@ function wpps_sanitize_settings($values) {
 	$values['max_long'] = floatval($values['max_long']);
 	$values['reverse_anim'] = (!!$values['reverse_anim']) ? 1 : 0;
 	$values['xmp'] = (!!$values['xmp']) ? 1 : 0;
+	$values['smooth_user_moves'] = (!!$values['smooth_user_moves']) ? 1 : 0;
 	$values['eyes_offset'] = floatval($values['eyes_offset']);
 
 	// Animation speed
