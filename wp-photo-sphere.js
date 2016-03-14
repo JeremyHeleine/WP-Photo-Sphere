@@ -1,5 +1,5 @@
 /*
- * This file is part of WP Photo Sphere v3.5.1
+ * This file is part of WP Photo Sphere v3.5.2
  * http://jeremyheleine.me
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -136,6 +136,15 @@ jQuery(function($) {
 
 			if (!!not_default_attrs)
 				options.pano_size = pano_size;
+
+			// Captured view
+			var captured_view = {
+				horizontal_fov: params.horizontal_fov,
+				vertical_fov: params.vertical_fov
+			};
+
+			if (captured_view.horizontal_fov != 360 || captured_view.vertical_fov != 180)
+				options.captured_view = captured_view;
 
 			// Object
 			new PhotoSphereViewer(options);

@@ -1,6 +1,6 @@
 <?php
 /*
- * WP Photo Sphere v3.5.1
+ * WP Photo Sphere v3.5.2
  * http://jeremyheleine.me
  *
  * Copyright (c) 2013-2015 Jérémy Heleine
@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.5.2');
+	define('WP_PHOTO_SPHERE_VERSION', '3.6.0.0');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -125,7 +125,7 @@ function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
 		$sizes = array('width', 'max_width');
 		$numbers = array('height', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height');
-		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long', 'eyes_offset', 'cropped_x', 'cropped_y');
+		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long', 'eyes_offset', 'cropped_x', 'cropped_y', 'horizontal_fov', 'vertical_fov');
 		$booleans = array('navbar', 'reverse_anim', 'xmp');
 
 		foreach ($atts as $att => $value) {
@@ -204,6 +204,8 @@ function wpps_handle_shortcode($atts) {
 		'cropped_height' => 'default',
 		'cropped_x' => 'default',
 		'cropped_y' => 'default',
+		'horizontal_fov' => 360,
+		'vertical_fov' => 180
 	), $atts);
 
 	// URL and title
@@ -211,12 +213,7 @@ function wpps_handle_shortcode($atts) {
 
 	if ($atts['id'] != 0) {
 		$id = $atts['id'];
-		if  (floatval(get_bloginfo('version')) >= 4.4 && wp_is_mobile()) {
-			$url = wp_get_attachment_url($id, 'large');
-		}
-		else {
-			$url = wp_get_attachment_url($id);
-		}
+		$url = wp_get_attachment_url($id);
 		$text = str_replace('%title%', get_the_title($id), $title);
 	}
 
@@ -258,7 +255,9 @@ function wpps_handle_shortcode($atts) {
 		'cropped_width=' . $atts['cropped_width'],
 		'cropped_height=' . $atts['cropped_height'],
 		'cropped_x=' . $atts['cropped_x'],
-		'cropped_y=' . $atts['cropped_y']
+		'cropped_y=' . $atts['cropped_y'],
+		'horizontal_fov=' . $atts['horizontal_fov'],
+		'vertical_fov=' . $atts['vertical_fov']
 	));
 
 	$output .= '<a href="' . $url . '?' . $params . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a>';
