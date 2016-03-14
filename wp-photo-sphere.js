@@ -144,6 +144,19 @@ jQuery(function($) {
 				vertical_fov: params.vertical_fov
 			};
 
+			// Overlay image
+			if (!!params.overlay_img.length) {
+				var overlay_pos = params.overlay_position.split('+');
+
+				options.overlay = {
+					image: params.overlay_img,
+					position: {
+						x: overlay_pos[1],
+						y: overlay_pos[0]
+					}
+				};
+			}
+
 			if (captured_view.horizontal_fov != 360 || captured_view.vertical_fov != 180)
 				options.captured_view = captured_view;
 

@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.6.0.1');
+	define('WP_PHOTO_SPHERE_VERSION', '3.6.0.3');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -57,6 +57,8 @@ function wpps_activation() {
 		'vertical_anim_speed' => '2rpm',
 		'vertical_anim_target' => 0,
 		'navbar' => 1,
+		'overlay_img' => '',
+		'overlay_position' => 'bottom left',
 		'min_fov' => 30,
 		'max_fov' => 90,
 		'zoom_level' => 0,
@@ -240,6 +242,8 @@ function wpps_handle_shortcode($atts) {
 		'vertical_anim_speed=' . $atts['vertical_anim_speed'],
 		'vertical_anim_target=' . $atts['vertical_anim_target'],
 		'navbar=' . $atts['navbar'],
+		'overlay_img=' . $settings['overlay_img'],
+		'overlay_position=' . str_replace(' ', '+', $settings['overlay_position']),
 		'min_fov=' . $atts['min_fov'],
 		'max_fov=' . $atts['max_fov'],
 		'zoom_level=' . $atts['zoom_level'],
@@ -385,6 +389,33 @@ function wpps_options_page() {
 				</tr>
 
 				<tr valign="top">
+					<th><label for="wpps_settings_overlay_img"><?php _e('Overlay image', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_overlay_img" name="wpps_settings[overlay_img]" size="40" value="<?php echo $settings['overlay_img']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_overlay_position"><?php _e('Overlay image position', 'wp-photo-sphere'); ?></label></th>
+					<td>
+						<label>
+							<input type="radio" name="wpps_settings[overlay_position]" value="top left" <?php checked($settings['overlay_position'], 'top left'); ?> />
+							<?php _e('Top left corner', 'wp-photo-sphere'); ?>
+						</label><br />
+						<label>
+							<input type="radio" name="wpps_settings[overlay_position]" value="bottom left" <?php checked($settings['overlay_position'], 'bottom left'); ?> />
+							<?php _e('Bottom left corner', 'wp-photo-sphere'); ?>
+						</label><br />
+						<label>
+							<input type="radio" name="wpps_settings[overlay_position]" value="bottom right" <?php checked($settings['overlay_position'], 'bottom right'); ?> />
+							<?php _e('Bottom right corner', 'wp-photo-sphere'); ?>
+						</label><br />
+						<label>
+							<input type="radio" name="wpps_settings[overlay_position]" value="top right" <?php checked($settings['overlay_position'], 'top right'); ?> />
+							<?php _e('Top right corner', 'wp-photo-sphere'); ?>
+						</label>
+					</td>
+				</tr>
+
+				<tr valign="top">
 					<th><label for="wpps_settings_min_fov"><?php _e('Minimal field of view (in degrees)', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_min_fov" name="wpps_settings[min_fov]" value="<?php echo $settings['min_fov']; ?>" /></td>
 				</tr>
@@ -511,6 +542,10 @@ function wpps_sanitize_settings($values) {
 	$values['xmp'] = (!!$values['xmp']) ? 1 : 0;
 	$values['smooth_user_moves'] = (!!$values['smooth_user_moves']) ? 1 : 0;
 	$values['eyes_offset'] = floatval($values['eyes_offset']);
+
+	// Overlay position
+	if (!in_array($values['overlay_position'], array('top left', 'bottom left', 'bottom right', 'top right')))
+		$values['overlay_position'] = 'bottom left';
 
 	// Animation speed
 	$values['anim_speed'] = wpps_sanitize_speed($values['anim_speed_value'], $values['anim_speed_unit']);
