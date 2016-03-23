@@ -3,7 +3,7 @@ Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
 Tested up to: 4.3
-Stable tag: 3.6
+Stable tag: 3.6.1
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -105,6 +105,9 @@ also use the `min_fov` and `max_fov` attributes.
 
 == Changelog ==
 
+= 3.6.1 =
+* Portuguese translation updated
+
 = 3.6 =
 * New: smooth user movements
 * New: FOVs for cropped panoramas
@@ -199,6 +202,9 @@ also use the `min_fov` and `max_fov` attributes.
 * First official release
 
 == Upgrade Notice ==
+
+= 3.6.1 =
+* Portuguese translation updated
 
 = 3.6 =
 * New: smooth user movements
