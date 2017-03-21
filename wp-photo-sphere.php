@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.7.0.0');
+	define('WP_PHOTO_SPHERE_VERSION', '3.7.0.1');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -52,6 +52,8 @@ function wpps_activation() {
 		'width' => '560px',
 		'max_width' => '100%',
 		'height' => '315px',
+		'segments' => 100,
+		'rings' => 100,
 		'hide_link' => 0,
 		'anim_speed' => '2rpm',
 		'vertical_anim_speed' => '2rpm',
@@ -128,7 +130,7 @@ add_action('plugins_loaded', 'wpps_lang');
 function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
 		$sizes = array('width', 'max_width');
-		$numbers = array('height', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height');
+		$numbers = array('height', 'segments', 'rings', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height');
 		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long', 'eyes_offset', 'cropped_x', 'cropped_y', 'horizontal_fov', 'vertical_fov');
 		$booleans = array('navbar', 'reverse_anim', 'xmp', 'smooth_user_moves', 'scroll_to_zoom');
 
@@ -184,6 +186,8 @@ function wpps_handle_shortcode($atts) {
 		'width' => $settings['width'],
 		'max_width' => $settings['max_width'],
 		'height' => intval($settings['height']),
+		'segments' => intval($settings['segments']),
+		'rings' => intval($settings['rings']),
 		'autoload' => $settings['autoload'],
 		'anim_after' => 'default',
 		'anim_speed' => $settings['anim_speed'],
@@ -237,6 +241,8 @@ function wpps_handle_shortcode($atts) {
 
 	$params = implode('&amp;', array(
 		'height=' . $atts['height'],
+		'segments=' . $atts['segments'],
+		'rings=' . $atts['rings'],
 		'hide_link=' . $settings['hide_link'],
 		'autoload=' . $atts['autoload'],
 		'anim_after=' . $atts['anim_after'],
@@ -374,6 +380,16 @@ function wpps_options_page() {
 				<tr valign="top">
 					<th><label for="wpps_settings_height"><?php _e('Default height', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_height" name="wpps_settings[height]" size="5" value="<?php echo $settings['height']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_segments"><?php _e('Default number of segments', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_segments" name="wpps_settings[segments]" size="5" value="<?php echo $settings['segments']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_rings"><?php _e('Default number of rings', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_rings" name="wpps_settings[rings]" size="5" value="<?php echo $settings['rings']; ?>" /></td>
 				</tr>
 
 				<tr valign="top">

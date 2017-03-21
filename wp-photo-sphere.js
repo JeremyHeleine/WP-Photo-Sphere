@@ -95,6 +95,8 @@ jQuery(function($) {
 			var options = {
 				panorama: panorama,
 				container: container[0],
+				segments: params.segments,
+				rings: params.rings,
 				smooth_user_moves: params.smooth_user_moves,
 				allow_scroll_to_zoom: params.scroll_to_zoom,
 				navbar: params.navbar,
