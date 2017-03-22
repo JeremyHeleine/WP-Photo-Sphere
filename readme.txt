@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
-Tested up to: 4.3
-Stable tag: 3.6.2
+Tested up to: 4.7.3
+Stable tag: 3.7
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
