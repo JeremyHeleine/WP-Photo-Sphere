@@ -3,7 +3,7 @@ Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
 Tested up to: 4.7.3
-Stable tag: 3.7
+Stable tag: 3.7.1
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -105,6 +105,13 @@ also use the `min_fov` and `max_fov` attributes.
 
 == Changelog ==
 
+= 3.7.1 =
+* Portuguese translation updated
+
+= 3.7 =
+* New option and attributes to control the sphere quality
+* New option and attribute to control the "scroll to zoom" feature
+
 = 3.6.2 =
 * Dutch translation updated
 
@@ -205,6 +212,13 @@ also use the `min_fov` and `max_fov` attributes.
 * First official release
 
 == Upgrade Notice ==
+
+= 3.7.1 =
+* Portuguese translation updated
+
+= 3.7 =
+* New option and attributes to control the sphere quality
+* New option and attribute to control the "scroll to zoom" feature
 
 = 3.6.2 =
 * Dutch translation updated
