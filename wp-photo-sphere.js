@@ -99,6 +99,7 @@ jQuery(function($) {
 				rings: params.rings,
 				smooth_user_moves: params.smooth_user_moves,
 				allow_scroll_to_zoom: params.scroll_to_zoom,
+				zoom_speed: params.zoom_speed,
 				navbar: params.navbar,
 				min_fov: params.min_fov,
 				max_fov: params.max_fov,
