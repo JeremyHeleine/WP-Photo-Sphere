@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.8');
+	define('WP_PHOTO_SPHERE_VERSION', '3.8.0');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -49,6 +49,7 @@ function wpps_activation() {
 		'class_a' => '',
 		'text' => 'WP Photo Sphere (%title%)',
 		'autoload' => 0,
+		'anim_after' => 2000,
 		'width' => '560px',
 		'max_width' => '100%',
 		'height' => '315px',
@@ -131,7 +132,7 @@ add_action('plugins_loaded', 'wpps_lang');
 function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
 		$sizes = array('width', 'max_width');
-		$numbers = array('height', 'segments', 'rings', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height');
+		$numbers = array('height', 'segments', 'rings', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height', 'anim_after');
 		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long', 'eyes_offset', 'cropped_x', 'cropped_y', 'horizontal_fov', 'vertical_fov', 'zoom_speed');
 		$booleans = array('navbar', 'reverse_anim', 'xmp', 'smooth_user_moves', 'scroll_to_zoom');
 
@@ -190,7 +191,7 @@ function wpps_handle_shortcode($atts) {
 		'segments' => intval($settings['segments']),
 		'rings' => intval($settings['rings']),
 		'autoload' => $settings['autoload'],
-		'anim_after' => 'default',
+		'anim_after' => $settings['anim_after'],
 		'anim_speed' => $settings['anim_speed'],
 		'vertical_anim_speed' => $settings['vertical_anim_speed'],
 		'vertical_anim_target' => $settings['vertical_anim_target'],
@@ -348,6 +349,11 @@ function wpps_options_page() {
 				<tr valign="top">
 					<th><label for="wpps_settings_max_width"><?php _e('Default maximum width', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_max_width" name="wpps_settings[max_width]" size="5" value="<?php echo $settings['max_width']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_anim_after"><?php _e('Time after which the animation is started (milliseconds, -1 to deactivate)', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_anim_after" name="wpps_settings[anim_after]" size="5" value="<?php echo $settings['anim_after']; ?>" /></td>
 				</tr>
 
 				<tr valign="top">
@@ -558,6 +564,7 @@ function wpps_sanitize_settings($values) {
 	$values['max_width'] = wpps_sanitize_size($values['max_width']);
 	$values['height'] = wpps_sanitize_size($values['height'], array('px'));
 	$values['autoload'] = (!!$values['autoload']) ? 1 : 0;
+	$values['anim_after'] = intval($values['anim_after']);
 	$values['hide_link'] = (!!$values['hide_link']) ? 1 : 0;
 	$values['navbar'] = (!!$values['navbar']) ? 1 : 0;
 	$values['min_fov'] = floatval($values['min_fov']);

@@ -97,6 +97,7 @@ jQuery(function($) {
 				container: container[0],
 				segments: params.segments,
 				rings: params.rings,
+				time_anim: (parseInt(params.anim_after) < 0) ? false : parseInt(params.anim_after),
 				smooth_user_moves: params.smooth_user_moves,
 				allow_scroll_to_zoom: params.scroll_to_zoom,
 				zoom_speed: params.zoom_speed,
@@ -120,10 +121,6 @@ jQuery(function($) {
 				eyes_offset: params.eyes_offset,
 				size: {height: params.height}
 			};
-
-			// Animation delay
-			if (params.anim_after != 'default')
-				options.time_anim = (params.anim_after == '-1') ? false : parseInt(params.anim_after);
 
 			// Cropped panorama
 			var pano_size = {};
