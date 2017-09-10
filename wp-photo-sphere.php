@@ -38,7 +38,7 @@ License: MIT
 
 // Current version number
 if (!defined('WP_PHOTO_SPHERE_VERSION'))
-	define('WP_PHOTO_SPHERE_VERSION', '3.8.0');
+	define('WP_PHOTO_SPHERE_VERSION', '3.8');
 
 function wpps_activation() {
 	update_option('wpps_version', WP_PHOTO_SPHERE_VERSION);
@@ -53,6 +53,7 @@ function wpps_activation() {
 		'width' => '560px',
 		'max_width' => '100%',
 		'height' => '315px',
+		'max_height' => 'none',
 		'segments' => 100,
 		'rings' => 100,
 		'hide_link' => 0,
@@ -158,6 +159,9 @@ function wpps_shortcode_attributes($atts) {
 			else if (in_array($att, $sizes))
 				$atts[$att] = wpps_sanitize_size($value);
 
+			else if ($att == 'max_height')
+				$atts['max_height'] = ($value != 'none') ? wpps_sanitize_size($value) : 'none';
+
 			// Numbers
 			else if (in_array($att, $numbers))
 				$atts[$att] = intval($value);
@@ -188,6 +192,7 @@ function wpps_handle_shortcode($atts) {
 		'width' => $settings['width'],
 		'max_width' => $settings['max_width'],
 		'height' => $settings['height'],
+		'max_height' => $settings['max_height'],
 		'segments' => intval($settings['segments']),
 		'rings' => intval($settings['rings']),
 		'autoload' => $settings['autoload'],
@@ -282,7 +287,8 @@ function wpps_handle_shortcode($atts) {
 
 	$output .= '<a href="' . $url . '?' . $params . '" style="display: block; ' . $settings['style_a'] . '"' . $class_a . '>' . $text . '</a>';
 
-	$output .= '<div style="position: relative; box-sizing: content-box;"></div>';
+	$max_height = ($atts['max_height'] != 'none') ? ' max-height: ' . $atts['max_height'] : '';
+	$output .= '<div style="position: relative; box-sizing: content-box;' . $max_height . '"></div>';
 	$output .= '</div>';
 
 	return $output;
@@ -389,6 +395,11 @@ function wpps_options_page() {
 				<tr valign="top">
 					<th><label for="wpps_settings_height"><?php _e('Default height', 'wp-photo-sphere'); ?></label></th>
 					<td><input type="text" id="wpps_settings_height" name="wpps_settings[height]" size="5" value="<?php echo $settings['height']; ?>" /></td>
+				</tr>
+
+				<tr valign="top">
+					<th><label for="wpps_settings_max_height"><?php _e('Default maximum height', 'wp-photo-sphere'); ?></label></th>
+					<td><input type="text" id="wpps_settings_max_height" name="wpps_settings[max_height]" size="5" value="<?php echo $settings['max_height']; ?>" /></td>
 				</tr>
 
 				<tr valign="top">
@@ -569,6 +580,7 @@ function wpps_sanitize_settings($values) {
 	$values['width'] = wpps_sanitize_size($values['width']);
 	$values['max_width'] = wpps_sanitize_size($values['max_width']);
 	$values['height'] = wpps_sanitize_size($values['height']);
+	$values['max_height'] = ($values['max_height'] != 'none') ? wpps_sanitize_size($values['max_height']) : 'none';
 	$values['autoload'] = (!!$values['autoload']) ? 1 : 0;
 	$values['anim_after'] = intval($values['anim_after']);
 	$values['hide_link'] = (!!$values['hide_link']) ? 1 : 0;
