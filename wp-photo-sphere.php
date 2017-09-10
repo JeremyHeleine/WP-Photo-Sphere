@@ -131,8 +131,8 @@ add_action('plugins_loaded', 'wpps_lang');
 
 function wpps_shortcode_attributes($atts) {
 	if (!empty($atts)) {
-		$sizes = array('width', 'max_width');
-		$numbers = array('height', 'segments', 'rings', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height', 'anim_after');
+		$sizes = array('width', 'max_width', 'height');
+		$numbers = array('segments', 'rings', 'anim_after', 'full_width', 'full_height', 'cropped_width', 'cropped_height', 'anim_after');
 		$floats = array('min_fov', 'max_fov', 'zoom_level', 'long', 'lat', 'vertical_anim_target', 'tilt_up_max', 'tilt_down_max', 'min_long', 'max_long', 'eyes_offset', 'cropped_x', 'cropped_y', 'horizontal_fov', 'vertical_fov', 'zoom_speed');
 		$booleans = array('navbar', 'reverse_anim', 'xmp', 'smooth_user_moves', 'scroll_to_zoom');
 
@@ -187,7 +187,7 @@ function wpps_handle_shortcode($atts) {
 		'title' => '',
 		'width' => $settings['width'],
 		'max_width' => $settings['max_width'],
-		'height' => intval($settings['height']),
+		'height' => $settings['height'],
 		'segments' => intval($settings['segments']),
 		'rings' => intval($settings['rings']),
 		'autoload' => $settings['autoload'],
@@ -539,9 +539,15 @@ function wpps_sanitize_style($style) {
 	return trim(preg_replace('#;\s*#', '; ', str_replace('"', '\'', $style)));
 }
 
-function wpps_sanitize_size($size, $allowed_units = array('px', '%', 'cm', 'in')) {
+function wpps_sanitize_size($size) {
 	$value = intval($size);
 	$unit = trim(str_replace($value, '', $size));
+
+	$allowed_units = array(
+		'em', 'ex', 'cap', 'rem', 'lh',
+		'%', 'vw', 'vh', 'vmin', 'vmax',
+		'px', 'mm', 'cm', 'in', 'pt'
+	);
 
 	if (!in_array($unit, $allowed_units))
 		$unit = 'px';
@@ -562,7 +568,7 @@ function wpps_sanitize_settings($values) {
 	$values['class_a'] = trim($values['class_a']);
 	$values['width'] = wpps_sanitize_size($values['width']);
 	$values['max_width'] = wpps_sanitize_size($values['max_width']);
-	$values['height'] = wpps_sanitize_size($values['height'], array('px'));
+	$values['height'] = wpps_sanitize_size($values['height']);
 	$values['autoload'] = (!!$values['autoload']) ? 1 : 0;
 	$values['anim_after'] = intval($values['anim_after']);
 	$values['hide_link'] = (!!$values['hide_link']) ? 1 : 0;
