@@ -2,8 +2,8 @@
 Contributors: Jeremy Heleine
 Tags: Google, Android, Photo Sphere, photos, panoramas, 360-degree, equirectangular
 Requires at least: 3.1
-Tested up to: 4.7.3
-Stable tag: 3.7.1
+Tested up to: 4.8.1
+Stable tag: 3.8
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -104,6 +104,12 @@ also use the `min_fov` and `max_fov` attributes.
 3. Panorama
 
 == Changelog ==
+
+= 3.8 =
+* New option and attribute (zoom_speed) to control the zoom speed
+* New option to control the animation delay
+* New units allowed for width, max width and height
+* New maximum height option and attribute
 
 = 3.7.1 =
 * Portuguese translation updated
@@ -212,6 +218,12 @@ also use the `min_fov` and `max_fov` attributes.
 * First official release
 
 == Upgrade Notice ==
+
+= 3.8 =
+* New option and attribute (zoom_speed) to control the zoom speed
+* New option to control the animation delay
+* New units allowed for width, max width and height
+* New maximum height option and attribute
 
 = 3.7.1 =
 * Portuguese translation updated
