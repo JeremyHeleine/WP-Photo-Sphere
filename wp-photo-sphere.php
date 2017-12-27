@@ -104,7 +104,7 @@ function wpps_register_scripts() {
 	wp_register_script('wpps-psv', plugin_dir_url(__FILE__) . 'lib/photo-sphere-viewer.min.js', array('wpps-three'), '2.9', true);
 	wp_register_script('wp-photo-sphere', plugin_dir_url(__FILE__) . 'wp-photo-sphere.js', array('jquery', 'wpps-psv'), '3.8', true);
 }
-add_action('plugins_loaded', 'wpps_register_scripts');
+add_action('wp_enqueue_scripts', 'wpps_register_scripts');
 
 function wpps_enqueue_admin_scripts() {
 	if (floatval(get_bloginfo('version')) >= 3.5)
